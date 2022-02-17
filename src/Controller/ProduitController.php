@@ -27,22 +27,4 @@ class ProduitController extends AbstractController
         ]);
     }*/
 
-
-
-/**
- * @Route("/produit/save")
- */
-public function save() {
-    $entityManager = $this->getDoctrine()->getManager();
-    $produit = new produit();
-    $produit->setNom('Merch 1');
-    $produit->setQuantity(9);
-    $produit->setPrice(25);
-    $produit->setDescription('Lorem ipsum dolor sit amet. At molestiae rerum qui eaque tempora est laborum obcaecati eos voluptatem nesciunt aut atque repudiandae. Est deleniti dignissimos et eius amet ut commodi omnis aut quia maxime non rerum tenetur ad dolor laudantium est provident optio.');
-    $produit->setImage('test.jpg');
-
-    $entityManager->persist($produit);
-    $entityManager->flush();
-    return new Response('Produit enregisté avec id '.$produit->getId());
- }
 }

@@ -45,7 +45,7 @@ class User
     private $date_join;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Departement::class, inversedBy="users")
+     * @ORM\ManyToOne(targetEntity=Departement::class, inversedBy="Users")
      */
     private $departement;
 
@@ -55,17 +55,17 @@ class User
     private $equipe;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="User")
      */
     private $commandes;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Reclamation::class, inversedBy="user")
+     * @ORM\ManyToOne(targetEntity=Reclamation::class, inversedBy="User")
      */
     private $reclamation;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="User")
      */
     private $commentaires;
 

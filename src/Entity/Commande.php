@@ -20,9 +20,9 @@ class Commande
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="commandes")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commandes")
      */
-    private $user;
+    private $User;
 
     /**
      * @ORM\OneToMany(targetEntity=produit::class, mappedBy="commande")
@@ -39,14 +39,14 @@ class Commande
         return $this->id;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
-        return $this->user;
+        return $this->User;
     }
 
-    public function setUser(?user $user): self
+    public function setUser(?User $User): self
     {
-        $this->user = $user;
+        $this->User = $User;
 
         return $this;
     }
