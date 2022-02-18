@@ -1,16 +1,14 @@
-
 <!doctype html>
 <html lang="en-US">
 
-
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <meta name="theme-color" content="#000">
 
-    <title>Products &#8211; Plaxer</title>
+    <title>Shop - LevelUp</title>
     <meta name='robots' content='max-image-preview:large' />
     <link rel='dns-prefetch' href='http://use.typekit.net/' />
     <link rel='dns-prefetch' href='http://s.w.org/' />
@@ -143,7 +141,7 @@
     <div class="sidebar-content-block">
         <div class="close base-icon-cross"></div>
         <div class="wrap scrollbar-inner"><div id="about_me-2" class="widget widget_about_me">
-                <h6 class="widget-title">About Me</h6>          <img class="image" src="../wp-content/uploads/2019/12/img42.jpg" alt="About Me" />
+                <h6 class="widget-title">About Me</h6>          <img class="image" src="{{ asset('front-office/img/img42.png') }}" alt="About Me" />
                 <div class="desc">Through our best techniques and bespoke growth plans we assess digital problems and put in place strategies that lead to commercial success. </div>
                 <div class="social-links">
                     <span class="label">Follow Us:</span>
@@ -169,8 +167,14 @@
         <div class="bg-overlay">
             <div class="circles style3"><span></span><span></span></div>
         </div>
-        <div class="container"><div class="shop-top row"><div class="with-sidebar col"><div class="woocommerce-notices-wrapper"></div><p class="woocommerce-result-count">
-                        Showing all 12 results</p>
+        <div class="container">
+            <div class="shop-top row">
+                <div class="with-sidebar col">
+                    <div class="woocommerce-notices-wrapper">
+                    </div>
+                    <p class="woocommerce-result-count">
+                        Showing all 12 results
+                    </p>
                     <form class="woocommerce-ordering" method="get">
                         <select name="orderby" class="orderby" aria-label="Shop order">
                             <option value="menu_order"  selected='selected'>Default sorting</option>
@@ -182,58 +186,59 @@
                         </select>
                         <input type="hidden" name="paged" value="1" />
                     </form>
-                </div></div><div class="row"><div class="col-12 col-md-8"><ul class="products row">
-                        <li class="col-12 col-sm-6 product type-product post-1364 status-publish first instock product_cat-accessories has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
-                            <div class="product-wrap">
-                                <div class="image"><span class="onsale accent"><span>Sale</span></span><div class="buttons"><a rel="nofollow" href="index7a94.html?add-to-cart=1364" data-quantity="1" data-product_id="1364" data-product_sku="df5-45" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>Add to cart</span></a></div><a href="../product/console/index.html" class="img"><img width="300" height="300" src="../wp-content/uploads/2019/12/img43-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img43-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img43-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img43-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img43-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img43-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="bottom"><div class="categories"><a href="../product-category/accessories/index.html" rel="tag">Accessories</a></div><h6 class="h"><a href="../product/console/index.html">Console</a></h6><div class="price simple"><del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>20</span></del> <ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>18</span></ins></div></div>    </div>
-                        </li>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    <ul class="products row">
+                        {% if produits %}
+                            {% for produit in produits %}
                         <li class="col-12 col-sm-6 product type-product post-1346 status-publish last instock product_cat-accessories has-post-thumbnail shipping-taxable purchasable product-type-simple">
                             <div class="product-wrap">
-                                <div class="image"><div class="buttons"><a rel="nofollow" href="index624d.html?add-to-cart=1346" data-quantity="1" data-product_id="1346" data-product_sku="d54-44" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>Add to cart</span></a></div><a href="../product/game-motherboard/index.html" class="img"><img width="300" height="300" src="../wp-content/uploads/2019/12/img39-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img39-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img39-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img39-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img39-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img39-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="bottom"><div class="categories"><a href="../product-category/accessories/index.html" rel="tag">Accessories</a></div><h6 class="h"><a href="../product/game-motherboard/index.html">Game Motherboard</a></h6><div class="price simple"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>18</span></div></div>    </div>
+                                <div class="image">
+                                    <div class="buttons">
+                                        <a rel="nofollow" href="index624d.html?add-to-cart=1346" data-quantity="1" data-product_id="1346" data-product_sku="d54-44" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link">
+                                            <i class="base-icon-shopping-cart">
+                                            </i>
+                                            <span>
+                                                Add to cart
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <a href="/article/{{ produit.id }}" class="img">
+                                        <img width="300" height="300" src="{{ asset('front-office/img/') }}{{ produit.image }}" class="show" alt="" loading="lazy"  />
+                                    </a>
+                                </div>
+                                <div class="bottom"><div class="categories">
+                                        <a href="/article/{{ produit.id }}" rel="tag">
+                                            Quantity: {{ produit.quantity }}
+                                        </a>
+                                    </div>
+                                    <h6 class="h">
+                                        <a href="/article/{{ produit.id }}">
+                                            {{ produit.nom }}
+                                        </a>
+                                    </h6>
+                                    <div class="price simple">
+                                        <span class="woocommerce-Price-amount amount">
+                                            {{ produit.price }}
+                                            <span class="woocommerce-Price-currencySymbol">
+                                                DT
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
-                        <li class="col-12 col-sm-6 product type-product post-1350 status-publish first instock product_cat-accessories has-post-thumbnail featured shipping-taxable purchasable product-type-simple">
-                            <div class="product-wrap">
-                                <div class="image"><div class="buttons"><a rel="nofollow" href="indexf012.html?add-to-cart=1350" data-quantity="1" data-product_id="1350" data-product_sku="dcb-4d" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>Add to cart</span></a></div><a href="../product/game-pc/index.html" class="img"><img width="300" height="300" src="../wp-content/uploads/2019/12/img35-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img35-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img35-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img35-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img35-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img35-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="bottom"><div class="categories"><a href="../product-category/accessories/index.html" rel="tag">Accessories</a></div><h6 class="h"><a href="../product/game-pc/index.html">Game PC</a></h6><div class="price simple"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>90</span></div></div>    </div>
-                        </li>
-                        <li class="col-12 col-sm-6 product type-product post-1343 status-publish last instock product_cat-bo-headphones has-post-thumbnail featured shipping-taxable purchasable product-type-simple">
-                            <div class="product-wrap">
-                                <div class="image"><div class="buttons"><a rel="nofollow" href="indexfa15.html?add-to-cart=1343" data-quantity="1" data-product_id="1343" data-product_sku="d51-41" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>Add to cart</span></a></div><div class="product-thumb-slider swiper-container"><div class="nav-arrows"><div class="prev base-icon-back" data-magic-cursor="link"></div><div class="next base-icon-next-1" data-magic-cursor="link"></div></div><div class="swiper-wrapper"><div class="swiper-slide"><a href="../product/headphones/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img41-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img41-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img41-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img41-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img41-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img41-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="swiper-slide"><a href="../product/headphones/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img37-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img37-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img37-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img37-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img37-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img37-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div></div></div></div><div class="bottom"><div class="categories"><a href="../product-category/bo-headphones/index.html" rel="tag">B&amp;O Headphones</a></div><h6 class="h"><a href="../product/headphones/index.html">Headphones</a></h6><div class="price simple"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>20</span></div></div>    </div>
-                        </li>
-                        <li class="col-12 col-sm-6 product type-product post-1344 status-publish first instock product_cat-bo-headphones has-post-thumbnail shipping-taxable purchasable product-type-simple">
-                            <div class="product-wrap">
-                                <div class="image"><div class="buttons"><a rel="nofollow" href="index42d3.html?add-to-cart=1344" data-quantity="1" data-product_id="1344" data-product_sku="dd9-46" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>Add to cart</span></a></div><a href="../product/headphones-2/index.html" class="img"><img width="300" height="300" src="../wp-content/uploads/2019/12/img40-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img40-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img40-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img40-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img40-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img40-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="bottom"><div class="categories"><a href="../product-category/bo-headphones/index.html" rel="tag">B&amp;O Headphones</a></div><h6 class="h"><a href="../product/headphones-2/index.html">Headphones</a></h6><div class="price simple"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>30</span></div></div>    </div>
-                        </li>
-                        <li class="col-12 col-sm-6 product type-product post-1348 status-publish last instock product_cat-bo-headphones has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
-                            <div class="product-wrap">
-                                <div class="image"><span class="onsale accent"><span>Sale</span></span><div class="buttons"><a rel="nofollow" href="index3fa6.html?add-to-cart=1348" data-quantity="1" data-product_id="1348" data-product_sku="db2-4f" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>Add to cart</span></a></div><div class="product-thumb-slider swiper-container"><div class="nav-arrows"><div class="prev base-icon-back" data-magic-cursor="link"></div><div class="next base-icon-next-1" data-magic-cursor="link"></div></div><div class="swiper-wrapper"><div class="swiper-slide"><a href="../product/headphones-3/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img37-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img37-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img37-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img37-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img37-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img37-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="swiper-slide"><a href="../product/headphones-3/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img41-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img41-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img41-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img41-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img41-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img41-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div></div></div></div><div class="bottom"><div class="categories"><a href="../product-category/bo-headphones/index.html" rel="tag">B&amp;O Headphones</a></div><h6 class="h"><a href="../product/headphones-3/index.html">Headphones</a></h6><div class="price simple"><del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>65</span></del> <ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>55</span></ins></div></div>    </div>
-                        </li>
-                        <li class="col-12 col-sm-6 product type-product post-1355 status-publish first instock product_cat-accessories has-post-thumbnail downloadable virtual purchasable product-type-simple">
-                            <div class="product-wrap">
-                                <div class="image"><div class="buttons"><a rel="nofollow" href="index6adf.html?add-to-cart=1355" data-quantity="1" data-product_id="1355" data-product_sku="woo-album" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>Add to cart</span></a></div><a href="../product/logitech-gamer-mouse/index.html" class="img"><img width="300" height="300" src="../wp-content/uploads/2019/12/img45-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img45-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img45-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img45-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img45-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img45-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="bottom"><div class="categories"><a href="../product-category/accessories/index.html" rel="tag">Accessories</a></div><h6 class="h"><a href="../product/logitech-gamer-mouse/index.html">Logitech Gamer mouse</a></h6><div class="price simple"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>15</span></div></div>    </div>
-                        </li>
-                        <li class="col-12 col-sm-6 product type-product post-1349 status-publish last instock product_cat-laptops has-post-thumbnail sale featured shipping-taxable purchasable product-type-simple">
-                            <div class="product-wrap">
-                                <div class="image"><span class="onsale accent"><span>Sale</span></span><div class="buttons"><a rel="nofollow" href="index034a.html?add-to-cart=1349" data-quantity="1" data-product_id="1349" data-product_sku="de3-43" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>Add to cart</span></a></div><div class="product-thumb-slider swiper-container"><div class="nav-arrows"><div class="prev base-icon-back" data-magic-cursor="link"></div><div class="next base-icon-next-1" data-magic-cursor="link"></div></div><div class="swiper-wrapper"><div class="swiper-slide"><a href="../product/macbook-pro/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img36-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img36-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img36-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img36-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img36-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img36-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="swiper-slide"><a href="../product/macbook-pro/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img49-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img49-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img49-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img49-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img49-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img49-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div></div></div></div><div class="bottom"><div class="categories"><a href="../product-category/laptops/index.html" rel="tag">Laptops</a></div><h6 class="h"><a href="../product/macbook-pro/index.html">MacBook Pro</a></h6><div class="price simple"><del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>18</span></del> <ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>16</span></ins></div></div>    </div>
-                        </li>
-                        <li class="col-12 col-sm-6 product type-product post-1363 status-publish first instock product_cat-accessories has-post-thumbnail shipping-taxable purchasable product-type-simple">
-                            <div class="product-wrap">
-                                <div class="image"><div class="buttons"><a rel="nofollow" href="indexbfc4.html?add-to-cart=1363" data-quantity="1" data-product_id="1363" data-product_sku="d20-4b" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>Add to cart</span></a></div><a href="../product/nintendo-controllers/index.html" class="img"><img width="300" height="300" src="../wp-content/uploads/2019/12/img44-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img44-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img44-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img44-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img44-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img44-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="bottom"><div class="categories"><a href="../product-category/accessories/index.html" rel="tag">Accessories</a></div><h6 class="h"><a href="../product/nintendo-controllers/index.html">Nintendo Controllers</a></h6><div class="price simple"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>18</span></div></div>    </div>
-                        </li>
-                        <li class="col-12 col-sm-6 product type-product post-1352 status-publish last instock product_cat-merch has-post-thumbnail featured shipping-taxable purchasable product-type-simple">
-                            <div class="product-wrap">
-                                <div class="image"><div class="buttons"><a rel="nofollow" href="indexbe4b.html?add-to-cart=1352" data-quantity="1" data-product_id="1352" data-product_sku="d63-4a" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>Add to cart</span></a></div><div class="product-thumb-slider swiper-container"><div class="nav-arrows"><div class="prev base-icon-back" data-magic-cursor="link"></div><div class="next base-icon-next-1" data-magic-cursor="link"></div></div><div class="swiper-wrapper"><div class="swiper-slide"><a href="../product/t-shirt/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img46-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img46-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img46-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img46-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img46-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img46-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="swiper-slide"><a href="../product/t-shirt/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img51-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img51-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img51-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img51-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img51-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img51-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="swiper-slide"><a href="../product/t-shirt/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img54-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img54-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img54-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img54-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img54-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img54-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="swiper-slide"><a href="../product/t-shirt/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img55-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img55-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img55-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img55-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img55-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img55-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div></div></div></div><div class="bottom"><div class="categories"><a href="../product-category/merch/index.html" rel="tag">Merch</a></div><h6 class="h"><a href="../product/t-shirt/index.html">T-Shirt</a></h6><div class="price simple"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>45</span></div></div>    </div>
-                        </li>
-                        <li class="col-12 col-sm-6 product type-product post-1365 status-publish first instock product_cat-merch has-post-thumbnail sale shipping-taxable product-type-grouped">
-                            <div class="product-wrap">
-                                <div class="image"><span class="onsale accent"><span>Sale</span></span><div class="buttons"><a rel="nofollow" href="../product/t-shirt-2/index.html" data-quantity="1" data-product_id="1365" data-product_sku="de6-4e" class="add_to_cart_button product_type_grouped" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>View</span></a></div><div class="product-thumb-slider swiper-container"><div class="nav-arrows"><div class="prev base-icon-back" data-magic-cursor="link"></div><div class="next base-icon-next-1" data-magic-cursor="link"></div></div><div class="swiper-wrapper"><div class="swiper-slide"><a href="../product/t-shirt-2/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img42-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img42-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img42-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img42-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img42-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img42-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="swiper-slide"><a href="../product/t-shirt-2/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img46-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img46-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img46-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img46-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img46-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img46-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="swiper-slide"><a href="../product/t-shirt-2/index.html"><img width="300" height="300" src="../wp-content/uploads/2019/12/img47-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img47-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img47-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img47-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img47-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img47-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div></div></div></div><div class="bottom"><div class="categories"><a href="../product-category/merch/index.html" rel="tag">Merch</a></div><h6 class="h"><a href="../product/t-shirt-2/index.html">T-Shirt</a></h6><div class="price grouped"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>18</span></div></div>    </div>
-                        </li>
-                        <li class="col-12 col-sm-6 product type-product post-1347 status-publish last instock product_cat-accessories has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
-                            <div class="product-wrap">
-                                <div class="image"><span class="onsale accent"><span>Sale</span></span><div class="buttons"><a rel="nofollow" href="indexb892.html?add-to-cart=1347" data-quantity="1" data-product_id="1347" data-product_sku="db2-44" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link"><i class="base-icon-shopping-cart"></i><span>Add to cart</span></a></div><a href="../product/xbox-gamepad/index.html" class="img"><img width="300" height="300" src="../wp-content/uploads/2019/12/img38-300x300.jpg" class="show" alt="" loading="lazy" srcset="https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img38-150x150@2x.jpg 300w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img38-150x150.jpg 150w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img38-100x100.jpg 100w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img38-300x300@2x.jpg 600w, https://promo-theme.com/plaxer/wp-content/uploads/2019/12/img38-100x100@2x.jpg 200w" sizes="(max-width: 300px) 100vw, 300px" /></a></div><div class="bottom"><div class="categories"><a href="../product-category/accessories/index.html" rel="tag">Accessories</a></div><h6 class="h"><a href="../product/xbox-gamepad/index.html">XBox Gamepad</a></h6><div class="price simple"><del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>20</span></del> <ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>18</span></ins></div></div>    </div>
-                        </li>
+                            {% endfor %}
+                        {% else %}
+                            <p>Aucun articles</p>
+                        {% endif %}
                     </ul>
-                </div><div class="site-sidebar col-12 col-md-4"><div class="wrap"><div id="about_me-3" class="widget widget_about_me">
-                            <h6 class="widget-title">About Me</h6>          <img class="image" src="../wp-content/uploads/2019/12/img42.jpg" alt="About Me" />
+                </div>
+                <div class="site-sidebar col-12 col-md-4"><div class="wrap"><div id="about_me-3" class="widget widget_about_me">
+                            <h6 class="widget-title">About Us</h6>          <img class="image" src="{{ asset('front-office/img/img42.jpg')}}" alt="About Me" />
                             <div class="desc">Through our best techniques and bespoke growth plans we assess digital problems and put in place strategies that lead to commercial success. </div>
                             <div class="social-links">
                                 <span class="label">Follow Us:</span>
@@ -249,32 +254,10 @@
                                 <a href="../category/gs-go/index.html" class="tag-cloud-link tag-link-17 tag-link-position-3" style="font-size: 10.8pt;" aria-label="GS GO (3 items)">GS GO</a>
                                 <a href="../category/pubg/index.html" class="tag-cloud-link tag-link-18 tag-link-position-4" style="font-size: 22pt;" aria-label="PUBG (11 items)">PUBG</a>
                                 <a href="../category/streams/index.html" class="tag-cloud-link tag-link-20 tag-link-position-5" style="font-size: 8pt;" aria-label="Streams (2 items)">Streams</a></div>
-                        </div><div id="woocommerce_products-3" class="widget woocommerce widget_products"><h6 class="widget-title">Related Products</h6><ul class="product_list_widget"><li>
-                                    <div class="content">
-                                        <a href="../product/t-shirt-2/index.html">
-                                            <div class="img" style="background-image: url(../wp-content/uploads/2019/12/img42-300x200.jpg)"></div>
-                                            <span class="c">
-        <span class="title">T-Shirt</span>
-        <span class="p-count"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>18</span></span>
-      </span>
-                                        </a>
-                                    </div>
-
-                                </li>
-
-                                <li>
-                                    <div class="content">
-                                        <a href="../product/nintendo-controllers/index.html">
-                                            <div class="img" style="background-image: url(../wp-content/uploads/2019/12/img44-300x201.jpg)"></div>
-                                            <span class="c">
-        <span class="title">Nintendo Controllers</span>
-        <span class="p-count"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>18</span></span>
-      </span>
-                                        </a>
-                                    </div>
-
-                                </li>
-                            </ul></div></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </main>
 
