@@ -25,13 +25,13 @@ class Commande
     private $User;
 
     /**
-     * @ORM\OneToMany(targetEntity=produit::class, mappedBy="commande")
+     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="commande")
      */
-    private $produit;
+    private $Produit;
 
     public function __construct()
     {
-        $this->produit = new ArrayCollection();
+        $this->Produit = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,14 +52,14 @@ class Commande
     }
 
     /**
-     * @return Collection|produit[]
+     * @return Collection|Produit[]
      */
     public function getProduit(): Collection
     {
         return $this->produit;
     }
 
-    public function addProduit(produit $produit): self
+    public function addProduit(Produit $produit): self
     {
         if (!$this->produit->contains($produit)) {
             $this->produit[] = $produit;
@@ -69,9 +69,9 @@ class Commande
         return $this;
     }
 
-    public function removeProduit(produit $produit): self
+    public function removeProduit(Produit $produit): self
     {
-        if ($this->produit->removeElement($produit)) {
+        if ($this->Produit->removeElement($produit)) {
             // set the owning side to null (unless already changed)
             if ($produit->getCommande() === $this) {
                 $produit->setCommande(null);

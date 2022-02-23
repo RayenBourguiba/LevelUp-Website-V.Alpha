@@ -30,7 +30,7 @@ class Evenement
     private $organisateur;
 
     /**
-     * @ORM\ManyToMany(targetEntity=equipe::class, inversedBy="evenements")
+     * @ORM\ManyToMany(targetEntity=Equipe::class, inversedBy="evenements")
      */
     private $equipes;
 
@@ -75,14 +75,14 @@ class Evenement
     }
 
     /**
-     * @return Collection|equipe[]
+     * @return Collection|Equipe[]
      */
     public function getEquipes(): Collection
     {
         return $this->equipes;
     }
 
-    public function addEquipe(equipe $equipe): self
+    public function addEquipe(Equipe $equipe): self
     {
         if (!$this->equipes->contains($equipe)) {
             $this->equipes[] = $equipe;
@@ -91,7 +91,7 @@ class Evenement
         return $this;
     }
 
-    public function removeEquipe(equipe $equipe): self
+    public function removeEquipe(Equipe $equipe): self
     {
         $this->equipes->removeElement($equipe);
 

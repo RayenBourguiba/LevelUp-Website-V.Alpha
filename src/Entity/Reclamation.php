@@ -40,7 +40,7 @@ class Reclamation
     private $status;
 
     /**
-     * @ORM\OneToMany(targetEntity=user::class, mappedBy="reclamation")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="reclamation")
      */
     private $user;
 
@@ -110,7 +110,7 @@ class Reclamation
         return $this->user;
     }
 
-    public function addUser(user $user): self
+    public function addUser(User $user): self
     {
         if (!$this->user->contains($user)) {
             $this->user[] = $user;
@@ -120,7 +120,7 @@ class Reclamation
         return $this;
     }
 
-    public function removeUser(user $user): self
+    public function removeUser(User $user): self
     {
         if ($this->user->removeElement($user)) {
             // set the owning side to null (unless already changed)

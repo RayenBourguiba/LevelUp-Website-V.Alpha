@@ -45,7 +45,7 @@ class Blog
     private $likes;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="blog")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="Blog")
      */
     private $commentaires;
 

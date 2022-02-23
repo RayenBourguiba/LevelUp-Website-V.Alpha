@@ -7,6 +7,7 @@
     <meta name="theme-color" content="#000">
     <title>{% block title %}{% endblock %} - LevelUp</title>
     <meta name='robots' content='max-image-preview:large' />
+    
     <link rel='dns-prefetch' href='http://use.typekit.net/' />
     <link rel='dns-prefetch' href='http://s.w.org/' />
     <link rel="alternate" type="application/rss+xml" title="Plaxer &raquo; Feed" href="feed/index.html" />
@@ -30,6 +31,8 @@
         }
     </style>
     </style>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel='stylesheet' id='wp-color-picker-css'  href="{{ asset('front-office/css/color-picker.minc8d8.css?ver=5.8.3') }}" media='all' />
     <link rel='stylesheet' id='wp-block-library-css'  href="{{ asset('front-office/css/style.minc8d8.css?ver=5.8.3') }}" media='all' />
     <link rel='stylesheet' id='wc-block-style-css'  href="{{ asset('front-office/css/style747d.css?ver=2.4.5') }}" media='all' />
@@ -105,16 +108,18 @@
                 <div class="right col-auto">
                     <nav class="navigation visible_menu">
                         <ul id="menu-navigation" class="menu">
-                            <li id="menu-item-40" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-40"><a href="" ><span>Home</span></a></li>
+                            <li id="menu-item-40" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-40"><a href="" ><span>Home</span></a></li>
                             <li id="menu-item-53" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-53"><a href="#" ><span>Blog</span></a></li>
                             <li id="menu-item-56" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-56"><a href="#" ><span>Events</span></a></li>
                             <li id="menu-item-54" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-54"><a href="#" ><span>Pages</span></a></li>
+                            
                             <li id="menu-item-52" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-52"><a href="#" ><span>Shop</span></a>
                                 <ul class="sub-menu">
                                     <li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-51"><a href="#" ><span>Product List</span></a></li>
                                     <li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44"><a href="#" ><span>Cart</span></a></li>
                                 </ul>
                             </li>
+                            
                             <li id="menu-item-47" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-47"><a href="#" ><span>Contact Us</span></a></li>
                             <li id="menu-item-52" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-52"><a href="#" ><span>Our Community</span></a>
                                 <ul class="sub-menu">
@@ -124,11 +129,34 @@
                             </li>
                         </ul>
                     </nav>
+                    {% if app.user %}
+                    <div class="widget-user-list-item"><a href="#" class="widget-user-list-link"><img src="https://media.geeksforgeeks.org/auth/avatar.png" alt="" style="height: 30px; width: 30px;" /></a></div>
+                    <a class = "menu-item"><span style="font-family: poppins, sans-sheriff; font-size: 13px;">{{app.user.username}}</span> </a>
+                    <style>
+                        .btn:focus {
+                            outline: none;
+                            border: none;
+                        }
+                    </style>
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; background-color: transparent; ">
+                        </button>
+                        <div class="dropdown-menu" style="background-color: #1A1A1A; right: 0px;">
+                            <a class="dropdown-item white" href="{{ path('new_user_show', {'id': app.user.id}) }}">Profile</span>
+                            <a class="dropdown-item white" href="{{ path('new_user_edit', {'id': app.user.id}) }}">Settings</a>
+                            <a class="dropdown-item white" href="dashboard">Dashboard</a>
+                            <div class="dropdown-divider white"></div>
+                            <a class="dropdown-item white" href="logout">Logout</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <a class = "button-style2" href="login"><span>Login</span></a>
+                    <a class = "button-style2" href="register"><span>Register</span></a>
+                    {% endif %}
                     <div class="header-search-button"><i class="base-icon-magnifying-glass"></i></div>
                     <div class="header-minicart woocommerce header-minicart-plaxer">
                         <div class="hm-count"><i class="base-icon-shopping-cart"></i></div>
                     </div>
-                    <div class="nav-butter visible_menu" data-magic-cursor="link-small"><span></span><span></span><span></span></div>
                 </div>
                 <div class="sidebar-butter" data-magic-cursor="link-small"><span></span><span></span><span></span></div>
             </div>
@@ -332,6 +360,9 @@
             var wc_cart_fragments_params = {"ajax_url":"\/plaxer\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/plaxer\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_700bf9de335fd69d7965a802cea344d6","fragment_name":"wc_fragments_700bf9de335fd69d7965a802cea344d6","request_timeout":"5000"};
             /* ]]> */
         </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="{{ asset('front-office/js/cart-fragments.min3fd0.js?ver=3.8.2') }}" id='wc-cart-fragments-js'></script>
         <script src="{{ asset('front-office/js/magic-cursor8a54.js?ver=1.0.0') }}" id='magic-cursor-js'></script>
         <script src="{{ asset('front-office/js/isotope.pkgd.min7c45.js?ver=3.0.6') }}" id='isotope-js'></script>
@@ -344,6 +375,7 @@
         <script src="{{ asset('front-office/js/photoswipe-ui-default.min0235.js?ver=4.1.1') }}" id='photoswipe-ui-js'></script>
         <script src="{{ asset('front-office/js/imagesloaded.mineda1.js?ver=4.1.4') }}" id='imagesloaded-js'></script>
         <script src="{{ asset('front-office/js/load-posts8a54.js?ver=1.0.0') }}" id='pt-load-posts-js'></script>
+        
         <script id='pt-scripts-js-extra'>
             /* <![CDATA[ */
             var yprm_ajax = {"url":"https:\/\/promo-theme.com\/plaxer\/wp-admin\/admin-ajax.php"};
