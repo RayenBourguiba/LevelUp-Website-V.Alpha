@@ -23,12 +23,12 @@ class Classement
     private $rang;
 
     /**
-     * @ORM\OneToOne(targetEntity=Equipe::class, inversedBy="classement", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=equipe::class, inversedBy="classement", cascade={"persist", "remove"})
      */
     private $equipe;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="classements")
+     * @ORM\ManyToOne(targetEntity=evenement::class, inversedBy="classements")
      */
     private $evenement;
 

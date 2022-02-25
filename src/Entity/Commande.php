@@ -25,7 +25,7 @@ class Commande
     private $User;
 
     /**
-     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="commande")
+     * @ORM\OneToMany(targetEntity=produit::class, mappedBy="commande")
      */
     private $produit;
 

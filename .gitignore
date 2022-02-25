@@ -7,8 +7,8 @@
 /public/bundles/
 /var/
 /vendor/
-.idea
 assets
+.idea
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
