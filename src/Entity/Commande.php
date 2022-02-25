@@ -20,18 +20,28 @@ class Commande
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="commandes")
+     * @ORM\Column(type="date")
      */
-    private $user;
+    private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity=produit::class, mappedBy="commande")
+     * @ORM\Column(type="integer")
      */
-    private $produit;
+    private $quantite;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $prix_total;
+
+    /**
+     * @ORM\OneToMany(targetEntity=LigneCommande::class, mappedBy="Commande", cascade={"persist", "remove"})
+     */
+    private $ligneCommandes;
 
     public function __construct()
     {
-        $this->produit = new ArrayCollection();
+        $this->ligneCommandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -39,42 +49,66 @@ class Commande
         return $this->id;
     }
 
-    public function getUser(): ?user
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->user;
+        return $this->date;
     }
 
-    public function setUser(?user $user): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->user = $user;
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getQuantite(): ?int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(int $quantite): self
+    {
+        $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    public function getPrixTotal(): ?float
+    {
+        return $this->prix_total;
+    }
+
+    public function setPrixTotal(float $prix_total): self
+    {
+        $this->prix_total = $prix_total;
 
         return $this;
     }
 
     /**
-     * @return Collection|produit[]
+     * @return Collection<int, LigneCommande>
      */
-    public function getProduit(): Collection
+    public function getLigneCommandes(): Collection
     {
-        return $this->produit;
+        return $this->ligneCommandes;
     }
 
-    public function addProduit(produit $produit): self
+    public function addLigneCommande(LigneCommande $ligneCommande): self
     {
-        if (!$this->produit->contains($produit)) {
-            $this->produit[] = $produit;
-            $produit->setCommande($this);
+        if (!$this->ligneCommandes->contains($ligneCommande)) {
+            $this->ligneCommandes[] = $ligneCommande;
+            $ligneCommande->setCommande($this);
         }
 
         return $this;
     }
 
-    public function removeProduit(produit $produit): self
+    public function removeLigneCommande(LigneCommande $ligneCommande): self
     {
-        if ($this->produit->removeElement($produit)) {
+        if ($this->ligneCommandes->removeElement($ligneCommande)) {
             // set the owning side to null (unless already changed)
-            if ($produit->getCommande() === $this) {
-                $produit->setCommande(null);
+            if ($ligneCommande->getCommande() === $this) {
+                $ligneCommande->setCommande(null);
             }
         }
 

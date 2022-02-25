@@ -45,7 +45,7 @@ class User
     private $date_join;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Departement::class, inversedBy="users")
+     * @ORM\ManyToOne(targetEntity=Departement::class, inversedBy="Users")
      */
     private $departement;
 
@@ -55,23 +55,22 @@ class User
     private $equipe;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="user")
-     */
-    private $commandes;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Reclamation::class, inversedBy="user")
+     * @ORM\ManyToOne(targetEntity=Reclamation::class, inversedBy="User")
      */
     private $reclamation;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="User")
      */
     private $commentaires;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
     public function __construct()
     {
-        $this->commandes = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
     }
 
@@ -164,36 +163,6 @@ class User
         return $this;
     }
 
-    /**
-     * @return Collection|Commande[]
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
-    }
-
-    public function addCommande(Commande $commande): self
-    {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
-            if ($commande->getUser() === $this) {
-                $commande->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getReclamation(): ?Reclamation
     {
         return $this->reclamation;
@@ -232,6 +201,18 @@ class User
                 $commentaire->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }

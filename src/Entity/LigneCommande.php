@@ -23,7 +23,7 @@ class LigneCommande
     private $quantite;
 
     /**
-     * @ORM\ManyToOne(targetEntity=produit::class, inversedBy="ligneCommandes")
+     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="ligneCommandes")
      */
     private $produit;
 
@@ -39,7 +39,6 @@ class LigneCommande
 
     public function getQuantite(): ?int
     {
-        return $this->quantite;
         return $this->quantite;
     }
 
