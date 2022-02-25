@@ -25,12 +25,12 @@ class Equipe
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=user::class, mappedBy="equipe")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="equipe")
      */
     private $membres;
 
     /**
-     * @ORM\ManyToMany(targetEntity=jeux::class, inversedBy="equipes")
+     * @ORM\ManyToMany(targetEntity=Jeux::class, inversedBy="equipes")
      */
     private $jeux;
 
