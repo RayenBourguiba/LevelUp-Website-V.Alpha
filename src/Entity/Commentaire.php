@@ -28,12 +28,12 @@ class Commentaire
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=blog::class, inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity=Blog::class, inversedBy="commentaires")
      */
     private $blog;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commentaires")
      */
     private $user;
 

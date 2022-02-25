@@ -40,7 +40,7 @@ class Reclamation
     private $status;
 
     /**
-     * @ORM\OneToMany(targetEntity=user::class, mappedBy="reclamation")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="reclamation")
      */
     private $user;
 
