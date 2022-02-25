@@ -68,6 +68,7 @@ class Jeux
         return $this;
     }
 
+   
     /**
      * @return Collection|Equipe[]
      */
@@ -75,6 +76,11 @@ class Jeux
     {
         return $this->equipes;
     }
+
+    public function __toString() {
+        return (String) $this -> getEquipes();
+    }
+
 
     public function addEquipe(Equipe $equipe): self
     {

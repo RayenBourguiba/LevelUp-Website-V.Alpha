@@ -5,10 +5,16 @@ namespace App\Entity;
 use App\Repository\EquipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=EquipeRepository::class)
+  * @ORM\Entity(repositoryClass=EquipeRepository::class)
+  * @UniqueEntity(
+  * fields={"nom"},
+  * errorPath="nom",
+  * message="This name already exists try another name."
+  *)
  */
 class Equipe
 {
@@ -25,12 +31,12 @@ class Equipe
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=user::class, mappedBy="equipe")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="equipe")
      */
     private $membres;
 
     /**
-     * @ORM\ManyToMany(targetEntity=jeux::class, inversedBy="equipes")
+     * @ORM\ManyToMany(targetEntity=Jeux::class, inversedBy="equipes")
      */
     private $jeux;
 
@@ -61,6 +67,10 @@ class Equipe
         return $this->nom;
     }
 
+    // public function __toString() {
+    //     return (String) $this -> getNom();
+    // }
+
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
@@ -76,7 +86,7 @@ class Equipe
         return $this->membres;
     }
 
-    public function addMembre(user $membre): self
+    public function addMembre(User $membre): self
     {
         if (!$this->membres->contains($membre)) {
             $this->membres[] = $membre;
@@ -86,7 +96,7 @@ class Equipe
         return $this;
     }
 
-    public function removeMembre(user $membre): self
+    public function removeMembre(User $membre): self
     {
         if ($this->membres->removeElement($membre)) {
             // set the owning side to null (unless already changed)
@@ -99,14 +109,14 @@ class Equipe
     }
 
     /**
-     * @return Collection|jeux[]
+     * @return Collection|Jeux[]
      */
     public function getJeux(): Collection
     {
         return $this->jeux;
     }
 
-    public function addJeux(jeux $jeux): self
+    public function addJeux(Jeux $jeux): self
     {
         if (!$this->jeux->contains($jeux)) {
             $this->jeux[] = $jeux;
@@ -115,7 +125,7 @@ class Equipe
         return $this;
     }
 
-    public function removeJeux(jeux $jeux): self
+    public function removeJeux(Jeux $jeux): self
     {
         $this->jeux->removeElement($jeux);
 

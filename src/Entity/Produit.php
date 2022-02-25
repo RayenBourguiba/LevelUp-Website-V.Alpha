@@ -43,7 +43,7 @@ class Produit
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="produit")
+     * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="Produit")
      */
     private $commande;
 

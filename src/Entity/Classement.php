@@ -23,12 +23,12 @@ class Classement
     private $rang;
 
     /**
-     * @ORM\OneToOne(targetEntity=equipe::class, inversedBy="classement", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Equipe::class, inversedBy="classement", cascade={"persist", "remove"})
      */
     private $equipe;
 
     /**
-     * @ORM\ManyToOne(targetEntity=evenement::class, inversedBy="classements")
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="classements")
      */
     private $evenement;
 
@@ -49,24 +49,24 @@ class Classement
         return $this;
     }
 
-    public function getEquipe(): ?equipe
+    public function getEquipe(): ?Equipe
     {
         return $this->equipe;
     }
 
-    public function setEquipe(?equipe $equipe): self
+    public function setEquipe(?Equipe $equipe): self
     {
         $this->equipe = $equipe;
 
         return $this;
     }
 
-    public function getEvenement(): ?evenement
+    public function getEvenement(): ?Evenement
     {
         return $this->evenement;
     }
 
-    public function setEvenement(?evenement $evenement): self
+    public function setEvenement(?Evenement $evenement): self
     {
         $this->evenement = $evenement;
 
