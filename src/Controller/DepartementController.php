@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/dashboard" name="departement_dashboard")
+ * @Route("/dashboard")
  */
 class DepartementController extends AbstractController
 {
@@ -49,7 +49,7 @@ class DepartementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="departement_show", methods={"GET"})
+     * @Route("/department/{id}", name="departement_show", methods={"GET"}, requirements={"id":"\d+"})
      */
     public function show(Departement $departement): Response
     {
@@ -59,7 +59,7 @@ class DepartementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="departement_edit", methods={"GET", "POST"})
+     * @Route("/department/{id}/edit", name="departement_edit", methods={"GET", "POST"}, requirements={"id":"\d+"})
      */
     public function edit(Request $request, Departement $departement, EntityManagerInterface $entityManager): Response
     {
@@ -79,7 +79,7 @@ class DepartementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="departement_delete", methods={"POST"})
+     * @Route("/{id}", name="departement_delete", methods={"POST"}, requirements={"id":"\d+"})
      */
     public function delete(Request $request, Departement $departement, EntityManagerInterface $entityManager): Response
     {
