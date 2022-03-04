@@ -40,13 +40,18 @@ class Reclamation
     private $status;
 
     /**
-     * @ORM\OneToMany(targetEntity=user::class, mappedBy="reclamation")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="reclamation")
      */
-    private $user;
+    private $User;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
 
     public function __construct()
     {
-        $this->user = new ArrayCollection();
+        $this->User = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -103,31 +108,43 @@ class Reclamation
     }
 
     /**
-     * @return Collection|user[]
+     * @return Collection|User[]
      */
     public function getUser(): Collection
     {
-        return $this->user;
+        return $this->User;
     }
 
-    public function addUser(user $user): self
+    public function addUser(User $User): self
     {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-            $user->setReclamation($this);
+        if (!$this->User->contains($User)) {
+            $this->User[] = $User;
+            $User->setReclamation($this);
         }
 
         return $this;
     }
 
-    public function removeUser(user $user): self
+    public function removeUser(User $User): self
     {
-        if ($this->user->removeElement($user)) {
+        if ($this->User->removeElement($User)) {
             // set the owning side to null (unless already changed)
-            if ($user->getReclamation() === $this) {
-                $user->setReclamation(null);
+            if ($User->getReclamation() === $this) {
+                $User->setReclamation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

@@ -6,11 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface , \Serializable
 {
     /**
      * @ORM\Id
@@ -30,7 +31,7 @@ class User
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique = true)
      */
     private $email;
 
@@ -38,14 +39,13 @@ class User
      * @ORM\Column(type="integer")
      */
     private $phone;
-
     /**
      * @ORM\Column(type="datetime")
      */
     private $date_join;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Departement::class, inversedBy="Users")
+     * @ORM\ManyToOne(targetEntity=Departement::class, inversedBy="users")
      */
     private $departement;
 
@@ -60,12 +60,12 @@ class User
     private $commandes;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Reclamation::class, inversedBy="User")
+     * @ORM\ManyToOne(targetEntity=Reclamation::class, inversedBy="user")
      */
     private $reclamation;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="User")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user")
      */
     private $commentaires;
 
@@ -73,6 +73,13 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique = true)
+     */
+    private $username;
+
+    
 
     public function __construct()
     {
@@ -251,5 +258,48 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getRoles()
+    {
+        return [
+            'ROLE_USER'
+        ];
+    }
+
+    public function getSalt() {}
+
+    public function eraseCredentials(){}
+
+    public function serialize() 
+    {
+        return serialize([
+            $this->id,
+            $this->username,
+            $this->email,
+            $this->password
+        ]);
+    }
+
+    public function unserialize($string)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->email,
+            $this->password
+        ) = unserialize($string, ['allowed_classes' =>false]);
     }
 }
