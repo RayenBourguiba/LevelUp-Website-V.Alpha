@@ -13,6 +13,9 @@ use App\Entity\Commande;
 use App\Repository\CommandeRepository;
 use App\Form\CommandeType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Notifier\Message\SmsMessage;
+use Symfony\Component\Notifier\TexterInterface;
+
 
 
 
@@ -65,6 +68,7 @@ class CommandeController extends AbstractController
         $commande->setDate(new \DateTime());
         $commande->setPrixTotal($cartService->getTotal());
         $commande->setQuantite($cartService->getQuantity());
+        $commande->setUser($this->getUser());
         $prodsArr = $cartService->getFullCart();
         for ($i=0; $i<$commande->getQuantite(); $i++){
             $nouvLigne = new LigneCommande();
@@ -74,9 +78,11 @@ class CommandeController extends AbstractController
             $em->persist($nouvLigne);
             $prodsArr[$i]["product"]->setQuantity($prodsArr[$i]["product"]->getQuantity() - 1);
         }
-
+        
+        
         $em->persist($commande);
         $em->flush();
+        $prodsArr = $cartService->emptyCart();
         return $this->redirectToRoute('AfficheCommande');
 
     }

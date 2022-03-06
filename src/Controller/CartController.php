@@ -84,7 +84,7 @@ class CartController extends AbstractController
      */
     public function error()
     {
-        return $this->render('article/Error.html.twig');
+        return $this->render('home/404.html.twig');
     }
 
 }

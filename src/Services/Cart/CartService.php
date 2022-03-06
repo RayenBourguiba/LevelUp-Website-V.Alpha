@@ -53,10 +53,22 @@ class CartService {
     }
 
     public function getQuantity() : int {
-        $total=0;
+        $total = 0;
         foreach($this->getFullCart() as $item){
             $total = $total +1;
         }
         return $total;
     }
+
+    public function emptyCart() {
+        $panier = $this->session->get('panier', []);
+        $paniervide = [];
+        foreach($panier as $id => $quantity) {
+            unset($panier[$id]);
+        }
+
+        $this->session->set('panier', $panier);
+    }
+
+    
 }
