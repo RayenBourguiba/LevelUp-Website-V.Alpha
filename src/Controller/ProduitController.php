@@ -11,6 +11,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+
 
 class ProduitController extends AbstractController
 {
@@ -44,6 +46,7 @@ class ProduitController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $Produit = $form->getData();
             if($Produit->getSolde() != null){ $Produit->setPrice($Produit->getPrice() -( $Produit->getPrice() * $Produit->getSolde() /100) ) ; }
+            $Produit->setUpdatedAt(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($Produit);
             $entityManager->flush();

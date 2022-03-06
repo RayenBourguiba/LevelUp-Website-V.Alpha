@@ -2,6 +2,12 @@
     "behat/transliterator": {
         "version": "v1.3.0"
     },
+    "captcha-com/captcha": {
+        "version": "4.2.5"
+    },
+    "captcha-com/symfony-captcha-bundle": {
+        "version": "4.2.12"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -90,6 +96,9 @@
     },
     "gedmo/doctrine-extensions": {
         "version": "v3.5.0"
+    },
+    "jms/metadata": {
+        "version": "2.6.1"
     },
     "laminas/laminas-code": {
         "version": "4.5.1"
@@ -430,6 +439,9 @@
             "./tests/bootstrap.php"
         ]
     },
+    "symfony/polyfill-intl-grapheme": {
+        "version": "v1.24.0"
+    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.24.0"
     },
@@ -512,6 +524,9 @@
     },
     "symfony/stopwatch": {
         "version": "v4.4.37"
+    },
+    "symfony/string": {
+        "version": "v6.0.3"
     },
     "symfony/translation": {
         "version": "4.4",
@@ -602,6 +617,18 @@
     },
     "twig/twig": {
         "version": "v3.3.8"
+    },
+    "vich/uploader-bundle": {
+        "version": "1.19",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.7",
+            "ref": "c4f5755b37fb65b9c6a3cbdae91205c15a137ed4"
+        },
+        "files": [
+            "./config/packages/vich_uploader.yaml"
+        ]
     },
     "webmozart/assert": {
         "version": "1.10.0"
