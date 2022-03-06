@@ -22,10 +22,10 @@ class ProduitType extends AbstractType
             ->add('nom')
             ->add('description')
             ->add('price')
-            ->add('quantity', NumberType::class)
+            ->add('quantity')
             ->add('solde')
             ->add('active')
-            ->add('image', FileType::class);
+            ->add('image');
         ;
     }
 

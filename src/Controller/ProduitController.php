@@ -90,7 +90,7 @@ class ProduitController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
 
             if($produit->getSolde() != null){ $produit->setPrice($produit->getPrice() -( $produit->getPrice() * $produit->getSolde() /100) ) ; }
-
+            $produit->setUpdatedAt(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
