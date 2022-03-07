@@ -52,39 +52,13 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/create-checkout-session", name="checkout")
-     */
-    public function checkout(CartService $cartService)
-    {
-        \Stripe\Stripe::setApiKey('pk_test_ljnAOl54FFPm8G9H0X7dQGfD');
-
-        $session = \Stripe\Checkout\Session::create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'eur',
-                    'product_data' => [
-                        'name' => 'Total Commande',
-                    ],
-                    'unit_amount' => $cartService->getTotal()*100,
-                ],
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
-            'success_url' => $this->generateUrl('success', [], UrlGeneratorInterface::ABSOLUTE_URL),
-            'cancel_url' => $this->generateUrl('error', [], UrlGeneratorInterface::ABSOLUTE_URL),
-        ]);
-
-        return new JsonResponse([ 'id' => $session->id ]);
-    }
-
-
-    /**
      * @Route("/error", name="error")
      */
     public function error()
     {
         return $this->render('home/404.html.twig');
     }
+
+
 
 }
