@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Jeux;
+use App\Entity\Review;
 use App\Form\JeuxType;
+use App\Form\ReviewType;
+use App\Repository\EquipeRepository;
 use App\Repository\JeuxRepository;
+use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,8 +25,21 @@ class JeuxController extends AbstractController
      */
     public function index(JeuxRepository $jeuxRepository): Response
     {
+
         return $this->render('jeux/index.html.twig', [
-            'jeuxes' => $jeuxRepository->findAll(),
+            'jeuxes' => $jeuxRepository->couuunt(),
+
+        ]);
+    }
+    /**
+     * @Route("/dashboardindexee", name="jeux_indexee", methods={"GET"})
+     */
+    public function indexeee(JeuxRepository $jeuxRepository): Response
+    {
+
+        return $this->render('jeux/index.html.twig', [
+            'jeuxes' => $jeuxRepository->couuuntee(),
+
         ]);
     }
 
@@ -34,6 +51,42 @@ class JeuxController extends AbstractController
         return $this->render('jeux/afficherj.html.twig', [
             'jeuxes' => $jeuxRepository->findAll(),
         ]);
+    }
+    /**
+     * @param JeuxRepository $repository
+     * @Route ("/Afficherfrontdetail/{id}", name="affichfrontdetail")
+     */
+    public function Affichefrontdetail(JeuxRepository   $repository,$id, Request $requeste, ReviewRepository $rep)
+    {
+        $jeu=$repository->find($id);
+        $review=new Review();
+$review->setJeuxId($jeu);
+
+        $form=$this->createForm(ReviewType::class,$review);
+        $form->handleRequest($requeste);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($review);
+            $em->flush();
+            return $this->redirectToRoute('jeux_frontindex');
+
+
+        }
+
+
+        return $this->render('jeux/detail.html.twig',[
+            'jeu'=>$jeu,
+            'f'=>$form->createView()
+        ]);
+
+
+
+
+
+
     }
 
     /**

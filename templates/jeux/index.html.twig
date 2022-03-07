@@ -5,6 +5,9 @@
 
 {% block content %}
     <h1>Jeux index</h1>
+<a class="btn btn-outline-black" href="{{ path('jeux_index') }}"> sort by  high rate </a>
+    <br>
+    <a class="btn btn-outline-black" href="{{ path('jeux_indexee') }}"> sort by  low rate </a>
 
     <table class="table">
         <thead>
@@ -12,6 +15,8 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Description</th>
+                <th> note_moyenne</th>
+
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,6 +26,9 @@
                 <td>{{ jeux.id }}</td>
                 <td>{{ jeux.nom }}</td>
                 <td>{{ jeux.description }}</td>
+                <td>{{ jeux.e }}</td>
+
+
                 <td>
                     <a href="{{ path('jeux_show', {'id': jeux.id}) }}">show</a>
                     <a href="{{ path('jeux_edit', {'id': jeux.id}) }}">edit</a>

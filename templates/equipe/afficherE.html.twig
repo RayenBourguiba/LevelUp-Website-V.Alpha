@@ -1,5 +1,7 @@
-{% extends 'base-front.html.twig' %}
+{%   extends 'base-front.html.twig' %}
+
 {% block content %}
+
     <div class="header-space"></div>          <div class="page-top-block type-" style="">
     <div class="container">
         <div class="heading-block">
@@ -25,16 +27,26 @@
 
                                                     <article class="portfolio-item category-dota-2 popup-item  col-12 col-sm-6 istp-item">
                                                         <div class="wrap">
+
                                                             <a class="plus-permalink permalink" href="/equipe/{{ equipe.id }}"><i class="essential-set-add"></i><span>open project</span></a>
+
                                                             <div class="with-video "></div>
                                                             <div class="img" style="background-image: url({{ asset('front-office/img/img1.jpg') }})"></div>
                                                             {#  <div class="img" style="background-image: url({{ asset('front-office/img/{{equipe.image}}') }})"></div>#}
                                                             <div class="content">
-                                                                <h6 class="title">{{ equipe.nom }}</h6>
+                                                                <h6 class="title" href="{{ path('imp',{'id':equipe.id}) }}">{{ equipe.nom }}</h6>
+
+
                                                             </div>
+
+
+
                                                             <a href="#" class="link" data-type="video" data-size="1920x1080" data-video='<div class="wrapper"><div class="video-wrapper"><iframe class="pswp__video" width="1920" height="1080" src="https://youtube.com/embed/1jWCXJfxHQM?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div></div>' data-magic-cursor="link-w-text" data-magic-cursor-text="Play" data-id="1"></a>      </div>
                                                     </article>
-                                                {% endfor %}
+                                                    <a class="nk-btn nk-btn-rounded nk-btn-color-main-1" href="{{ path('imp',{'id':equipe.id}) }}">imprr </a>
+
+
+                                            {% endfor %}
                                             {% else %}
                                                 <p>Aucune equipe</p>
                                             {% endif %}

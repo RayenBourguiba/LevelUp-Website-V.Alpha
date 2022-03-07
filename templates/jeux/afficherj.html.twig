@@ -24,17 +24,24 @@
                                                 {% for jeu in jeuxes %}
 
                                             <article class="portfolio-item category-dota-2 popup-item  col-12 col-sm-6 istp-item">
+                                                <br>
+
                                                 <div class="wrap">
                                                     <a class="plus-permalink permalink" href="/jeux/{{ jeu.id }}"><i class="essential-set-add"></i><span>open project</span></a>
                                                     <div class="with-video "></div>
                                                     <div class="img" style="background-image: url({{ asset('front-office/img/img1.jpg') }})"></div>
                                                     {#  <div class="img" style="background-image: url({{ asset('front-office/img/{{jeu.image}}') }})"></div>#}
+
                                                     <div class="content">
                                                         <h6 class="title">{{ jeu.nom }}</h6>
                                                         <div class="desc">{{ jeu.description }}</div>
+
                                                     </div>
+
                                                     <a href="#" class="link" data-type="video" data-size="1920x1080" data-video='<div class="wrapper"><div class="video-wrapper"><iframe class="pswp__video" width="1920" height="1080" src="https://youtube.com/embed/1jWCXJfxHQM?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div></div>' data-magic-cursor="link-w-text" data-magic-cursor-text="Play" data-id="1"></a>      </div>
                                             </article>
+                                                    <a href="{{ path('affichfrontdetail',{'id':jeu.id}) }}" class="nk-post-img">Detail </a>
+
                                                 {% endfor %}
                                             {% else %}
                                                 <p>Aucun jeux</p>
