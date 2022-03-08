@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Form\ProduitType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,9 +21,14 @@ class ProduitController extends AbstractController
     /**
      * @Route("/store", name="store")
      */
-    public function index(): Response
+    public function index(Request $request, PaginatorInterface $paginator)
     {
-        $produits = $this->getDoctrine()->getRepository(Produit::class)->findAll();
+        $donnees = $this->getDoctrine()->getRepository(Produit::class)->findBy(['active' => 'true']);
+        $produits = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            4
+        );
         return $this->render('produit/index.html.twig', ['produits' => $produits]);
     }
 

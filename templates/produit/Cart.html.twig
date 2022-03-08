@@ -387,18 +387,22 @@
                                     </td>
 
                                     <td class="product-price" data-title="Price">
-                                        <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">TND</span>{{item.product.price}}</span>              </td>
+                                        <span class="woocommerce-Price-amount amount">{{item.product.price}}<span class="woocommerce-Price-currencySymbol"> TND</span></span>              </td>
 
                                     <td class="product-quantity" data-title="Quantity">
-                                        <div class="quantity">
-                                            <a href="#" class="down" data-magic-cursor="link-small"></a>
-                                            <input type="number" id="quantity_62272ed410218" class="input-text qty text" step="1" min="1" max="{{ item.product.quantity }}" name="cart[bcc0d400288793e8bdcd7c19a8ac0c2b][qty]" value="1" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" aria-labelledby="MacBook Pro quantity">
-                                            <a href="#" class="up" data-magic-cursor="link-small"></a>
+                                        <div>
+                                            {%  if item.quantity > 1 %}
+                                            <a href="{{ path('cart_reduce', {'id': item.product.id})}}"><i class="bi bi-plus-square-fill">-</i></a>
+                                            {%  endif %}
+                                            {{ item.quantity }}
+                                            <a href="{{ path('cart_add', {'id': item.product.id})}}"><i class="bi bi-plus-square-fill">+</i></a>
                                         </div>
                                     </td>
-
+                                    {# {% set num = craft.request.getParam('quan')  %}
+                                    {% set item.quantity = item.quantity * num %}
+                                    #}
                                     <td class="product-subtotal" data-title="Total">
-                                        <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">TND</span>{{item.product.price * item.quantity}}</span>              </td>
+                                        <span class="woocommerce-Price-amount amount">{{item.product.price * item.quantity}}<span class="woocommerce-Price-currencySymbol"> TND</span></span>              </td>
                                 </tr>
                                 {% endfor %}
                                 </tbody>
@@ -417,7 +421,7 @@
                                             <tbody>
                                             <tr class="order-total">
                                                 <th>Total</th>
-                                                <td data-title="Total"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">TND </span>{{ total }}</span></td>
+                                                <td data-title="Total"><span class="woocommerce-Price-amount amount">{{ total }}<span class="woocommerce-Price-currencySymbol"> TND</span></span></td>
                                             </tr>
 
 
@@ -434,10 +438,13 @@
                             </div>
 
                             <script src="https://js.stripe.com/v3/"></script>
+                          
+
                             <p class="return-to-shop">
                                 <a class="button wc-backward" href="/store">
                                     Return to shop
                                 </a>
+
                             </p>
 
 

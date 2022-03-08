@@ -32,6 +32,7 @@
             background: none !important;
             padding: 0 !important;
         }
+
     </style>
 </head>
 </html>
@@ -270,7 +271,7 @@
     <div class="sidebar-content-block">
         <div class="close base-icon-cross"></div>
         <div class="wrap scrollbar-inner"><div id="about_me-2" class="widget widget_about_me">
-                <h6 class="widget-title">About Me</h6>          <img class="image" src="{{ asset('front-office/img/shop.png') }}" alt="About Us" />
+                <h6 class="widget-title">About Our Store</h6>          <img class="image" src="{{ asset('front-office/img/gaming.png') }}" alt="About Us" />
                 <div class="desc">Through our best techniques and bespoke growth plans we assess digital problems and put in place strategies that lead to commercial success. </div>
                 <div class="social-links">
                     <span class="label">Follow Us:</span>
@@ -327,11 +328,12 @@
             <div class="row">
                 <div class="col-12 col-md-8">
                     <ul class="products row">
-                        {% if produits %}
+                    {% if produits %}
                             {% for produit in produits %}
+                    <li class="col-12 col-sm-6 product type-product post-1346 status-publish last instock product_cat-accessories has-post-thumbnail shipping-taxable purchasable product-type-simple">
                                 {% if produit.getActive() and produit.getQuantity() %}
-                        <li class="col-12 col-sm-6 product type-product post-1346 status-publish last instock product_cat-accessories has-post-thumbnail shipping-taxable purchasable product-type-simple">
-                            <div class="product-wrap">
+
+                                    <div class="product-wrap">
                                 <div class="image">
                                     <div class="buttons">
                                         <a rel="nofollow" href="{{ path('cart_add', {'id': produit.id})}}" class="add_to_cart_button product_type_simple" >
@@ -373,7 +375,9 @@
                             <p>Aucun produit</p>
                         {% endif %}
                     </ul>
+                    <ul class="pagination " style="">{{ knp_pagination_render(produits) }}</ul>
                 </div>
+
                 <div class="site-sidebar col-12 col-md-4"><div class="wrap"><div id="about_me-3" class="widget widget_about_me">
                             <h6 class="widget-title">About Us</h6>          <img class="image" src="{{ asset('front-office/img/img42.jpg')}}" alt="About Me" />
                             <div class="desc">Through our best techniques and bespoke growth plans we assess digital problems and put in place strategies that lead to commercial success. </div>

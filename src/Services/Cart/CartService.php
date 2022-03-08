@@ -19,6 +19,15 @@ class CartService {
         }
         $this->session->set('panier', $panier);
     }
+    public function reduce(int $id) {
+        $panier=$this->session->get('panier', []);
+        if(($panier[$id]>1)){
+            $panier[$id]--;
+        }else {
+            $panier[$id]=1;
+        }
+        $this->session->set('panier', $panier);
+    }
     public function remove(int $id) {
         $panier=$this->session->get('panier', []);
         if(!empty($panier[$id])){

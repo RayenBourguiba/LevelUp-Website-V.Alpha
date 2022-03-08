@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\CartType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,6 +41,26 @@ class CartController extends AbstractController
     public function add($id, CartService $cartService)
     {
         $cartService->add($id);
+        return $this->redirectToRoute('cart_index');
+    }
+    /**
+     * @Route("/panier/reduce/{id}", name="cart_reduce")
+     */
+    public function reduce($id, CartService $cartService)
+    {
+        $cartService->reduce($id);
+        return $this->redirectToRoute('cart_index');
+    }
+
+    /**
+     * @Route("/panier/addQuantity/{id}", name="cart_addQuantity")
+     */
+    public function quantityCheck($id, CartService $cartService, Request $request)
+    {
+        $form = $this->createForm(CartType::class);
+        $form->handleRequest($request);
+        $qte=$form->getData('qte');
+        $cartService->addQuantity($id, $qte);
         return $this->redirectToRoute('cart_index');
     }
 
