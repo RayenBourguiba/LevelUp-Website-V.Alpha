@@ -1,0 +1,25 @@
+{% extends 'base-back.html.twig' %}
+{% block content %}
+	<main class="main-container">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-lg-8">
+				<br>
+                <br>
+                <br>
+
+                	{% block title %} New Blog {% endblock %}
+
+{% block body %}
+    <h1> Create new Blog </h1>
+
+    {{ include('blog/_form.html.twig') }}
+
+    <a href="{{ path('blog_index') }}"> back to list </a>
+{% endblock %}
+				</div>
+			</div>
+		</main>
+	{% endblock %}
+
+

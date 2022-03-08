@@ -1,0 +1,23 @@
+
+{% extends 'base-front.html.twig' %}
+{% block content %}
+	<main class="main-container">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-lg-8">
+				<br>
+                <br>
+                <br>
+{% block title %}New Commentaire{% endblock %}
+
+{% block body %}
+    <h1>Create new Commentaire</h1>
+
+    {{ include('commentaire/_form.html.twig') }}
+
+    <a href="{{ path('commentaire_index') }}">back to list</a>
+{% endblock %}
+				</div>
+			</div>
+		</main>
+	{% endblock %}
