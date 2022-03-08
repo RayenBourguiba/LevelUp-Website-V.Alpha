@@ -410,9 +410,13 @@
                                 </tfoot>
                             </table>
                             <script src="https://js.stripe.com/v3/"></script>
-                            <a class="button wc-backward" href=" {{path('AjouterCommande')  }} ">
+                            <a class="button wc-backward" href=" {{path('checkout')  }} ">
+
                                 Passer Commande
                             </a>
+                            <form action="/checkout" method="POST">
+                                <button type="submit">Checkout</button>
+                            </form>
                             <p class="return-to-shop">
                                 <a class="button wc-backward" href="/store">
                                     Return to shop

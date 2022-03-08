@@ -12,6 +12,9 @@ use App\Form\ProduitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
 
 use App\Services\Cart\CartService;
 
@@ -58,6 +61,35 @@ class CartController extends AbstractController
     {
         return $this->render('home/404.html.twig');
     }
+
+    /**
+     * @Route("/checkout", name="checkout")
+     */
+    public function checkout(CartService $cartService, $stripeSK)
+    {
+        \Stripe\Stripe::setApiKey($stripeSK);
+
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => 'Total Commande',
+                    ],
+                    'unit_amount' => $cartService->getTotal()*100,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => $this->generateUrl('AjouterCommande', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'cancel_url' => $this->generateUrl('error', [], UrlGeneratorInterface::ABSOLUTE_URL),
+        ]);
+
+        //return $this->redirectToRoute('AjouterCommande');
+        return $this->redirect($session->url, 303);
+    }
+
 
 
 
