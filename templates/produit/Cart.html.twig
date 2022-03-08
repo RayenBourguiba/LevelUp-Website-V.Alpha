@@ -369,54 +369,71 @@
                     <div class="woocommerce">
                         <div class="woocommerce-notices-wrapper">
                         </div>
+                        <div class="row">
+                            <form class="woocommerce-cart-form col-12 col-md-7 col-lg-8" action="/cart" method="post">
                         {% if items | length >0 %}
-                            <table class='table'>
-                                <thead>
-                                <tr>
-                                    <th>Article</th>
-                                    <th>Prix</th>
-                                    <th>Quantité</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
+                            <table class="shop_product_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
                                 <tbody>
                                 {% for item in items %}
+                                <tr class="woocommerce-cart-form__cart-item cart_item">
 
+                                    <td class="product-name" data-title="Product">
+                                        <div class="d-flex">
+                                            <div class="img">
+                                                <a href="{{ path('cart_remove', {'id': item.product.id})}}" class="remove-button base-icon-cross" aria-label="Remove this item"data-magic-cursor="link-small"></a><img width="300" height="300" src="{{ asset('front-office/img/') }}{{ item.product.image }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">                  </div>
+                                            <div class="p-content">
+                                                <a href="{{ path('produit_show', {'id': item.product.id})}}" data-magic-cursor="link-small">{{item.product.nom}}</a><div class="categories"><a href="{{ path('produit_show', {'id': item.product.id})}}" rel="tag" data-magic-cursor="link-small">{{item.product.referance}}</a></div>                  </div>
+                                        </div>
+                                    </td>
 
+                                    <td class="product-price" data-title="Price">
+                                        <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">TND</span>{{item.product.price}}</span>              </td>
 
-                                    <tr>
-                                        <td>{{item.product.nom}}</td>
-                                        <td>{{item.product.price}}</td>
-                                        <td>{{item.quantity}}</td>
-                                        <td>{{item.product.price * item.quantity}}</td>
-                                        <td><a href="{{ path('cart_remove', {'id': item.product.id})}}" class="btn btn-danger btn-sm">
-                                                <i ></i>Remove From Card</a>
-                                        </td>
-                                    </tr>
+                                    <td class="product-quantity" data-title="Quantity">
+                                        <div class="quantity">
+                                            <a href="#" class="down" data-magic-cursor="link-small"></a>
+                                            <input type="number" id="quantity_62272ed410218" class="input-text qty text" step="1" min="1" max="{{ item.product.quantity }}" name="cart[bcc0d400288793e8bdcd7c19a8ac0c2b][qty]" value="1" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" aria-labelledby="MacBook Pro quantity">
+                                            <a href="#" class="up" data-magic-cursor="link-small"></a>
+                                        </div>
+                                    </td>
 
+                                    <td class="product-subtotal" data-title="Total">
+                                        <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">TND</span>{{item.product.price * item.quantity}}</span>              </td>
+                                </tr>
                                 {% endfor %}
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="3" class="text-right">Total : </td>
-                                    <td>{{ total }}</td>
-                                    <td></td>
-
-                                </tr>
-
-
-
-                                </tfoot>
                             </table>
-                            <script src="https://js.stripe.com/v3/"></script>
-                            <a class="button wc-backward" href=" {{path('checkout')  }} ">
-
-                                Passer Commande
-                            </a>
-                            <form action="/checkout" method="POST">
-                                <button type="submit">Checkout</button>
                             </form>
+
+                            <div class="col-12 col-md-5 col-lg-4">
+                                <div class="cart-collaterals">
+                                    <div class="cart_totals ">
+
+
+                                        <div class="h">Cart totals</div>
+
+                                        <table cellspacing="0" class="shop_table shop_table_responsive">
+
+                                            <tbody>
+                                            <tr class="order-total">
+                                                <th>Total</th>
+                                                <td data-title="Total"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">TND </span>{{ total }}</span></td>
+                                            </tr>
+
+
+                                            </tbody></table>
+
+                                        <div class="wc-proceed-to-checkout">
+
+                                            <a href="/checkout" class="button" data-magic-cursor="link-small">Proceed to checkout</a>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script src="https://js.stripe.com/v3/"></script>
                             <p class="return-to-shop">
                                 <a class="button wc-backward" href="/store">
                                     Return to shop
@@ -425,12 +442,15 @@
 
 
                         {% else %}
-                            <p>Le panier est vide</p>
-                            <p class="return-to-shop">
-                                <a class="button wc-backward" href="/store">
-                                    Return to shop
-                                </a>
-                            </p>
+                            <div id="post-9" class="post-9 page type-page status-publish hentry">
+                                <div class="content-area clearfix">
+                                    <div class="woocommerce"><div class="woocommerce-notices-wrapper"></div><p class="cart-empty woocommerce-info">Your cart is currently empty.</p>	<p class="return-to-shop">
+                                            <a class="button wc-backward" href="/store">
+                                                Return to shop		</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         {% endif %}
 
                     </div>
