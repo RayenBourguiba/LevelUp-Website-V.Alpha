@@ -2,31 +2,39 @@
 
 namespace App\Entity;
 
-use App\Repository\EvenementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * @ORM\Entity(repositoryClass=EvenementRepository::class)
+ * Evenement
+ *
+ * @ORM\Table(name="evenement")
+ * @ORM\Entity
  */
 class Evenement
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="organisateur", type="string", length=255, nullable=false)
      */
     private $organisateur;
 
@@ -41,34 +49,35 @@ class Evenement
     private $classements;
 
 
-    /**
-     *
-     * @ORM\Column(name="image", type="string", length=500, nullable=false)
-     */
-    private $image;
-
-
-    private $file;
-
-
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-
     public function __construct()
     {
         $this->equipes = new ArrayCollection();
         $this->classements = new ArrayCollection();
     }
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     */
+    private $image;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="date", type="date", nullable=true)
+     */
+    private $date;
+
+    private $file;
+
 
     public function getId(): ?int
     {
@@ -98,6 +107,43 @@ class Evenement
 
         return $this;
     }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
 
     /**
      * @return Collection|equipe[]
@@ -153,6 +199,7 @@ class Evenement
         return $this;
     }
 
+
     /**
      * @return mixed
      */
@@ -171,7 +218,7 @@ class Evenement
 
     public function getUploadDir()
     {
-        return 'assets';
+        return '';
     }
 
     public function getAbsolutRoot()
@@ -186,7 +233,7 @@ class Evenement
 
     public function getUploadRoot()
     {
-        return __DIR__.'/../../'.$this->getUploadDir().'/';
+        return __DIR__.'/../../public/front-office/img/'.$this->getUploadDir();
     }
 
     public function upload()
@@ -205,5 +252,7 @@ class Evenement
         $this->file->move($this->getUploadRoot(),$this->image);
         unset($this->file);
     }
+
+
 
 }

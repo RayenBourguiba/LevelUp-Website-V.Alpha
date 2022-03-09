@@ -3,13 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\Evenement;
+use App\Entity\Participants;
 use App\Entity\User;
+use App\Repository\EvenementRepository;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
+use Fungio\GoogleCalendarBundle\FungioGoogleCalendarBundle;
+use Fungio\GoogleCalendarBundle\Service\GoogleCalendar;
+use Psr\Log\LoggerInterface;
 use src\Form\EditEvenementType;
 use src\Form\EvenementType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class EvenementController extends AbstractController
 {
@@ -23,6 +32,60 @@ class EvenementController extends AbstractController
         return $this->render('/evenement/index.html.twig',
             array('events' => $p));
     }
+
+    /**
+     * @Route("/eventdetails/{id}", name="event_details")
+     * Method({"GET"})
+     */
+    public function getEventDetails(Request $request)
+    {
+        $p = $this->getDoctrine()->getRepository(Evenement::class)->findBy(["id"=> $request->get('id')]);
+        $id_event = $request->get('id');
+        $par = $this->getDoctrine()->getRepository(Participants::class)->findObject(1,  $id_event);
+        if($par) {
+        $idUsers = $par[0]->getIdUser();
+
+            $idParticipation = $par[0]->getId();
+            return $this->render('/evenement/event_details.html.twig',
+                array('event' => $p[0], 'users'=> $idUsers, 'participation' => $idParticipation));
+        }
+
+
+        return $this->render('/evenement/event_details.html.twig',
+            array('event' => $p[0], 'users'=> 0));
+    }
+
+
+
+//    /**
+//     * @Route("/calendar", name="gotocalendar")
+//     * Method({"GET"})
+//     */
+//    public function gotoCalendar()
+//    {
+//
+//        $request = $this->get('request_stack')->getMasterRequest();
+//
+//        $googleCalendar = new GoogleCalendar();
+//
+//        $googleCalendar->setRedirectUri("http://127.0.0.1:8000/events");
+//
+//        if ($request->query->has('code') && $request->get('code')) {
+//           $client = $googleCalendar->getClient($request->get('code'));
+//        } else {
+//
+//           $client = $googleCalendar->getClient();
+//
+//        }
+//
+//        if (is_string($client)) {
+//            return new RedirectResponse($client);
+//        }
+//
+//        $events = $googleCalendar->getEventsForDate('primary', new \DateTime('now'));
+//
+//    }
+
 
     /**
      * @Route("/admin_events", name="show_events_admin")
@@ -91,5 +154,80 @@ class EvenementController extends AbstractController
             'event' => $event,
             'form' => $editForm->createView(),
         ));
+    }
+
+    /**
+     * @Route("/show_calendar", name="show_calendar")
+     * Method({"GET","POST"})
+     */
+    public function UsershowReservation( Request $request, EvenementRepository $eventRepo,   LoggerInterface $logger) : Response
+    {
+
+        $res = [];
+
+        $events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
+        foreach($events as $event)
+        {
+            $res[] = [
+                'id'=> $event->getId(),
+                'start'=> $event->getDate()->format('Y-m-d H:i:s'),
+                'end'=> $event->getDate()->format('Y-m-d H:i:s'),
+                'title'=> $event->getNom(),
+            ];
+        }
+
+        $data = json_encode($res);
+
+        return $this->render('evenement/afficher_calendrier_admin.html.twig', [
+            'data'=>$data,
+
+        ]);
+
+    }
+    /**
+     * @Route("/edit_calendar/{id}", name="edit_calendar")
+     * Method({"GET","PUT"})
+     */
+    public function majEvent(?Evenement $event, Request $request,EntityManagerInterface $entityManager): Response
+    { // On récupère les données
+        $donnees = json_decode($request->getContent());
+        if
+        (isset($donnees->title) && !empty($donnees->title) && isset($donnees->start) && !empty($donnees->start) )
+
+        {  //les donnees sont completes
+            $code=200;
+            if(!$event)
+            {
+
+                $event=new $event;
+                $code=201;
+
+            }
+            $event->setDate(new DateTime($donnees->start));
+            $event->setNom($donnees->title);
+
+            if($donnees->allDay){
+                $event->setDate(new DateTime($donnees->start));
+            }
+            else {
+                $event->setDate(new DateTime($donnees->start));
+            }
+            $entityManager->persist($event);
+            $entityManager->flush();
+            return new Response('OK', $code);
+        }
+
+
+
+
+        else {
+            // Les données sont incomplètes
+            return new Response('données incomplete', 404);
+        }
+
+
+
+
+
     }
 }

@@ -3,6 +3,7 @@
 namespace src\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,6 +15,12 @@ class EvenementType extends AbstractType
     {
         $builder ->add('Nom')
             ->add('Organisateur')
+            ->add('Description')
+            ->add('Date', DateType::class, [
+                'placeholder' => [
+                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                ],
+            ])
             ->add('File',FileType::class)
             ->add('Ajouter',SubmitType::class);
     }

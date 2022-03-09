@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\DepartementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -97,4 +98,10 @@ class Departement
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return (string) $this->getNom();
+    }
+
 }

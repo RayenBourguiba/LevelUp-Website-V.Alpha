@@ -15,5 +15,21 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).on('click','button',function(){
+            $.ajax('{{ path('add_events') }}', {
+                data: {
+                    // you can pass some parameters to the controller here
+                },
+                success: function(data) {
+                    console.log("SUCKSESS")
+                },
+                error: function() {
+                    // show alert or something
+                }
+            });
+            return false; // this stops normal button behaviour from executing;
 
+        });
+    </script>
 {% endblock %}

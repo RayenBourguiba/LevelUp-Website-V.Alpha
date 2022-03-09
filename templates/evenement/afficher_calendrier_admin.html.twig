@@ -1,0 +1,39 @@
+{% extends "base-back-clean.html.twig" %}
+{% block content %}
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+
+    <div id="calendrier">
+    </div>
+    <script>
+        window.onload = () => {
+            let calendarElt = document.querySelector("#calendrier")
+            let calendar = new FullCalendar.Calendar(calendarElt, {
+                initialView: 'dayGridMonth',
+                locale: 'fr',
+                timeZone: 'Europe/Paris',
+                headerToolbar: {
+                    start: 'prev,next today',
+                    center: 'title',
+                    end: 'dayGridMonth,timeGridWeek'
+                },
+                events: {{ data|raw }},
+                editable: true,
+                eventResizableFromStart: true
+            })
+            calendar.on('eventChange', (e) => {
+                let url = `/edit_calendar/${e.event.id}`
+                let donnees = {
+                    "title": e.event.title,
+                    "start": e.event.start,
+                    "end": e.event.end,
+                    "allDay": e.event.allDay
+                }
+
+                let xhr = new XMLHttpRequest
+                xhr.open("PUT", url)
+                xhr.send(JSON.stringify(donnees))
+            })
+            calendar.render()
+        }
+    </script>
+{% endblock %}
