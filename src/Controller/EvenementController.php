@@ -18,6 +18,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 
 class EvenementController extends AbstractController
@@ -126,12 +129,72 @@ class EvenementController extends AbstractController
      * @Route("/deleteevent/{id}", name="delete_event")
      * Method({"GET","POST"})
      */
-    public function DeleteEvent($id)
+    public function DeleteEvent($id,  LoggerInterface $logger)
     {
         $em = $this->getDoctrine()->getManager();
         $event = $em->getRepository(Evenement::class)->find($id);
-        $em->remove($event);
-        $em->flush();
+        //$em->remove($event);
+       // $em->flush();
+        $participants = $em->getRepository(Participants::class)->findBy(['id_event' => $id]);
+        $users = [];
+        foreach ($participants as $row) {
+            $row = $em->getRepository(User::class)->find($row->getIdUser());
+            array_push($users, $row->getEmail());
+        }
+
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->SMTPKeepAlive = true; //SMTP connection will not close after each email sent, reduces SMTP overhead
+            $mail->Username   = 'beyaghalia.necib@esprit.tn';                     //SMTP username
+            $mail->Password   = 'bayancib2000';                          //Enable implicit TLS encryption
+            $mail->Port       = 25;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Evenement Annulé';
+            $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+            //Recipients
+            $mail->setFrom('beyaghalia.necib@esprit.tn', 'RuntimeError E-Sports');
+
+            foreach ($users as $row) {
+                try {
+                    $mail->addAddress($row);
+                } catch (Exception $e) {
+                    echo 'Invalid address skipped: ' . htmlspecialchars($row['email']) . '<br>';
+                    continue;//Add a recipient
+                }
+
+
+            //Attachments
+                try {
+                    $mail->send();
+
+                } catch (Exception $e) {
+                    echo 'Mailer Error (' . htmlspecialchars($row['email']) . ') ' . $mail->ErrorInfo . '<br>';
+                    //Reset the connection to abort sending this message
+                    //The loop will continue trying to send to the rest of the list
+                    $mail->getSMTPInstance()->reset();
+                }
+            }
+            var_dump('Message has been sent');
+        } catch (Exception $e) {
+            var_dump("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+
+        }
+        $mail->clearAddresses();
+
         return $this->redirectToRoute('show_events_admin');
     }
 
@@ -217,17 +280,10 @@ class EvenementController extends AbstractController
             return new Response('OK', $code);
         }
 
-
-
-
         else {
             // Les données sont incomplètes
             return new Response('données incomplete', 404);
         }
-
-
-
-
-
     }
+
 }

@@ -15,6 +15,7 @@ class EditEvenementType extends AbstractType
         $builder
             ->add('Nom')
             ->add('Organisateur')
+            ->add('Description')
             ->add('Modifier',SubmitType::class);
     }
 
