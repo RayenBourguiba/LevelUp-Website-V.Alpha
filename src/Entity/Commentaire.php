@@ -28,12 +28,12 @@ class Commentaire
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=blog::class, inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity=Blog::class, inversedBy="commentaires")
      */
     private $blog;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commentaires")
      */
     private $user;
 
@@ -66,24 +66,31 @@ class Commentaire
         return $this;
     }
 
-    public function getBlog(): ?blog
+    public function getBlog(): ?Blog
     {
         return $this->blog;
     }
 
-    public function setBlog(?blog $blog): self
+    public function setBlog(?Blog $blog): self
     {
         $this->blog = $blog;
 
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): self
+    public function __tostring()
+    {
+        return (string) $this->getBlog();
+    }
+
+    
+
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 

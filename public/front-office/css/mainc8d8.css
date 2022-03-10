@@ -5611,7 +5611,7 @@ nav.woocommerce-pagination ul {
 .protected-post-form .form button {
   background: none;
   border: none;
-  color: inherit;
+  color: inherit !important;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -5865,7 +5865,7 @@ a {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  text-decoration: none;
+  text-decoration: none !important;
   pointer-events: all;
 }
 

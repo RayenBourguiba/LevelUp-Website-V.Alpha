@@ -97,19 +97,19 @@
             <div class="row align-items-center justify-content-between">
                 <div class="logo-block col-auto">
                     <div class="site-logo">
-                        <a href="index.html" data-magic-cursor="link"><img class="light" src="{{ asset('front-office/img/logo-light.png') }}" alt="LevelUp"><img class="dark" src="{{ asset('front-office/img/logo-dark.png') }}" alt="LevelUp"></a>              </div>
+                        <a href="/" data-magic-cursor="link"><img class="light" src="{{ asset('front-office/img/logo-light.png') }}" alt="LevelUp"><img class="dark" src="{{ asset('front-office/img/logo-dark.png') }}" alt="LevelUp"></a>              </div>
                 </div>
                 <div class="right col-auto">
                     <nav class="navigation visible_menu">
                         <ul id="menu-navigation" class="menu">
-                            <li id="menu-item-40" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-40"><a href="" ><span>Home</span></a></li>
+                            <li id="menu-item-40" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-menu-parent menu-item-has-children menu-item-40"><a href="" ><span>Home</span></a></li>
                             <li id="menu-item-53" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-53"><a href="#" ><span>Blog</span></a></li>
                             <li id="menu-item-56" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-56"><a href="#" ><span>Events</span></a></li>
                             <li id="menu-item-54" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-54"><a href="#" ><span>Pages</span></a></li>
-                            <li id="menu-item-52" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-52"><a href="#" ><span>Shop</span></a>
+                            <li id="menu-item-52" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-has-children menu-item-52"><a href="/store" ><span>Shop</span></a>
                                 <ul class="sub-menu">
-                                    <li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-51"><a href="#" ><span>Product List</span></a></li>
-                                    <li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44"><a href="#" ><span>Cart</span></a></li>
+                                    <li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-51"><a href="/store" ><span>Product List</span></a></li>
+                                    <li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44"><a href="/panier" ><span>Cart</span></a></li>
                                 </ul>
                             </li>
                             <li id="menu-item-47" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-47"><a href="#" ><span>Contact Us</span></a></li>
@@ -123,7 +123,7 @@
                     </nav>
                     <div class="header-search-button"><i class="base-icon-magnifying-glass"></i></div>
                     <div class="header-minicart woocommerce header-minicart-plaxer">
-                        <div class="hm-count"><i class="base-icon-shopping-cart"></i></div>
+                        <div class="hm-count"><a href="/panier"><i class="base-icon-shopping-cart"></i></a></div>
                     </div>
                     <div class="nav-butter visible_menu" data-magic-cursor="link-small"><span></span><span></span><span></span></div>
                 </div>
@@ -141,7 +141,7 @@
     <div class="sidebar-content-block">
         <div class="close base-icon-cross"></div>
         <div class="wrap scrollbar-inner"><div id="about_me-2" class="widget widget_about_me">
-                <h6 class="widget-title">About Me</h6>          <img class="image" src="{{ asset('front-office/img/img42.png') }}" alt="About Me" />
+                <h6 class="widget-title">About Me</h6>          <img class="image" src="{{ asset('front-office/img/shop.png') }}" alt="About Us" />
                 <div class="desc">Through our best techniques and bespoke growth plans we assess digital problems and put in place strategies that lead to commercial success. </div>
                 <div class="social-links">
                     <span class="label">Follow Us:</span>
@@ -173,7 +173,13 @@
                     <div class="woocommerce-notices-wrapper">
                     </div>
                     <p class="woocommerce-result-count">
-                        Showing all 12 results
+                        {% set i = 0 %}
+                        {% for produit in produits %}
+                            {% if produit.getActive()  %}
+                         {% set i = i + 1 %}
+                            {% endif %}
+                        {% endfor %}
+                        Showing all {{ i }} results
                     </p>
                     <form class="woocommerce-ordering" method="get">
                         <select name="orderby" class="orderby" aria-label="Shop order">
@@ -194,11 +200,12 @@
                     <ul class="products row">
                         {% if produits %}
                             {% for produit in produits %}
+                                {% if produit.getActive() and produit.getQuantity() %}
                         <li class="col-12 col-sm-6 product type-product post-1346 status-publish last instock product_cat-accessories has-post-thumbnail shipping-taxable purchasable product-type-simple">
                             <div class="product-wrap">
                                 <div class="image">
                                     <div class="buttons">
-                                        <a rel="nofollow" href="index624d.html?add-to-cart=1346" data-quantity="1" data-product_id="1346" data-product_sku="d54-44" class="add_to_cart_button product_type_simple ajax_add_to_cart" data-magic-cursor="link">
+                                        <a rel="nofollow" href="{{ path('cart_add', {'id': produit.id})}}" class="add_to_cart_button product_type_simple" >
                                             <i class="base-icon-shopping-cart">
                                             </i>
                                             <span>
@@ -206,17 +213,17 @@
                                             </span>
                                         </a>
                                     </div>
-                                    <a href="/article/{{ produit.id }}" class="img">
-                                        <img width="300" height="300" src="{{ asset('front-office/img/') }}{{ produit.image }}" class="show" alt="" loading="lazy"  />
+                                    <a href="/store/produit/{{ produit.id }}" class="img">
+                                        <img width="300" height="300" src="{{ asset('front-office/img/') }}{{ produit.image }}" class="show" alt="" loading="lazy"  style="width: 300px; height: 300px; object-fit: cover;" />
                                     </a>
                                 </div>
                                 <div class="bottom"><div class="categories">
-                                        <a href="/article/{{ produit.id }}" rel="tag">
+                                        <a href="/store/produit/{{ produit.id }}" rel="tag">
                                             Quantity: {{ produit.quantity }}
                                         </a>
                                     </div>
                                     <h6 class="h">
-                                        <a href="/article/{{ produit.id }}">
+                                        <a href="/store/produit/{{ produit.id }}">
                                             {{ produit.nom }}
                                         </a>
                                     </h6>
@@ -231,9 +238,10 @@
                                 </div>
                             </div>
                         </li>
+                                {% endif %}
                             {% endfor %}
                         {% else %}
-                            <p>Aucun articles</p>
+                            <p>Aucun produit</p>
                         {% endif %}
                     </ul>
                 </div>
@@ -244,7 +252,7 @@
                                 <span class="label">Follow Us:</span>
                                 <a href="#" target="_self"><i class="base-icon-instagram-social-network-logo-of-photo-camera"></i></a><a href="#" target="_self"><i class="fab fa-facebook-f"></i></a><a href="#" target="_self"><i class="fab fa-twitter"></i></a>      </div>
 
-                        </div><div id="search-4" class="widget widget_search"><form role="search" method="get" class="searchform" action="https://promo-theme.com/plaxer/" >
+                        </div><div id="search-4" class="widget widget_search"><form role="search" method="get" class="searchform" action="#" >
                                 <div><input type="text" value="" placeholder="Type and hit enter" name="s" class="input" /></div>
                                 <button type="submit" class="searchsubmit" value=""><i class="base-icon-magnifying-glass"></i></button>
                             </form>
