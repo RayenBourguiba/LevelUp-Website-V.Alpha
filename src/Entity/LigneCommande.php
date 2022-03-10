@@ -23,7 +23,8 @@ class LigneCommande
     private $quantite;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="ligneCommandes")
+
+     * @ORM\ManyToOne(targetEntity=produit::class, inversedBy="ligneCommandes")
      */
     private $produit;
 
@@ -72,4 +73,6 @@ class LigneCommande
 
         return $this;
     }
+
 }
+

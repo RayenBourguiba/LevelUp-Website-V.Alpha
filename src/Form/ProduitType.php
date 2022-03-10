@@ -31,4 +31,5 @@ class ProduitType extends AbstractType
             'data_class' => Produit::class,
         ]);
     }
+
 }

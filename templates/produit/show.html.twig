@@ -11,7 +11,8 @@
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <meta name="theme-color" content="#000">
 
-    <title>{{ produit.nom }} - LevelUp</title>
+
+    <title>Game Motherboard &#8211; Plaxer</title>
     <meta name='robots' content='max-image-preview:large' />
     <link rel='dns-prefetch' href='http://use.typekit.net/' />
     <link rel='dns-prefetch' href='http://s.w.org/' />
@@ -184,7 +185,8 @@
                     </div>
 
                     <div class="summary entry-summary col">
-                        <div class="breadcrumbs"><a href="/store">Home</a> \ <a href="/store">Produit</a> \ {{ produit.nom }}</div><div class="categories"><span>#</span><a href="/produit/{{ produit.nom }}" rel="tag">{{ produit.id }}</a></div><h1 class="product_title entry-title h4">{{ produit.nom }}</h1><div class="price-block">
+
+                        <div class="breadcrumbs"><a href="/store">Home</a> \ <a href="/store">Produit</a> \ {{ produit.nom }}</div><div class="categories"><span>#</span><a href="/produit/{{ produit.nom }}" rel="tag">Accessories</a></div><h1 class="product_title entry-title h4">{{ produit.nom }}</h1><div class="price-block">
                             <div class="price"><span class="woocommerce-Price-amount amount">{{ produit.price }}<span class="woocommerce-Price-currencySymbol">TND</span></span></div>
                         </div>
                         <div class="woocommerce-product-details__short-description">
@@ -192,20 +194,14 @@
                         </div>
                         <div class="product-meta">
 
-                            <div class="item"><span class="label">REF: </span><span class="value">{{ produit.referance }}</span></div>
-
-
-                        </div>
-                        <div class="product-meta">
-
-                            <div class="item"><span class="label">QTY: </span><span class="value">{{ produit.quantity }}</span></div>
+                            <div class="item"><span class="label">SKU: </span><span class="value">d54-44</span></div>
 
 
                         </div>
 
-                        <form class="cart" >
 
-                            {#
+                        <form class="cart" action="https://promo-theme.com/plaxer/product/game-motherboard/" method="post" enctype='multipart/form-data'>
+
                             <div class="quantity">
                                 <a href="#" class="down"></a>
                                 <input
@@ -224,19 +220,12 @@
                                         aria-labelledby="Game Motherboard quantity" />
                                 <a href="#" class="up"></a>
                             </div>
-                            #}
 
 
-
-                            <div class="buttons ">
-                                <a rel="nofollow" href="{{ path('cart_add', {'id': produit.id})}}" class="add_to_cart_button product_type_simple" >
-                                    <i class="base-icon-shopping-cart">
-                                    </i>
-                                    <span>
-                                                Add to cart
-                                            </span>
-                                </a>
-                            </div>
+                            <button type="submit" name="add-to-cart" value="1346" class="button-style1 dark" data-magic-cursor="link">
+                                <i class="base-icon-shopping-cart"></i>
+                                <span>Add to cart</span>
+                            </button>
 
                         </form>
 
