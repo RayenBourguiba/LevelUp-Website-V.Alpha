@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Classement;
+use App\Entity\Evenement;
 use src\Form\ClassementType;
 use src\Form\EditClassementType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,26 +13,31 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ClassementController extends AbstractController
 {
+
+    private $js="";
     /**
      * @Route("/classement", name="app_classement")
      */
     public function index(): Response
     {
         $p = $this->getDoctrine()->getRepository(Classement::class)->findAll();
-        return $this->render('classement/index.html.twig',
-            array('classement' => $p));
+        $events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
+        return $this->render('classement/classement_front.html.twig',
+            array('classement' => $p, "events"=> $events));
     }
 
     /**
-     * @Route("/admin_classements", name="show_classement_admin")
+     * @Route("/dashboard/admin_classements", name="show_classement_admin")
      * Method({"GET"})
      */
     public function getEventsAdmin()
     {
         $p = $this->getDoctrine()->getRepository(Classement::class)->findAll();
+
         return $this->render('classement/afficher_classement_admin.html.twig',
             array('classement' => $p));
     }
+
 
     /**
      * @Route("/addclassement", name="add_ranking")
@@ -40,15 +46,32 @@ class ClassementController extends AbstractController
 
     public function AjouterEvenement(Request $request)
     {
+
         $c = new Classement();
-        $form = $this->createForm(ClassementType::class, $c);
+        $form = $this->createForm(ClassementType::class, $c,  array(
+            'event' => $request->get('id')));
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $classements = $this->getDoctrine()->getRepository(Classement::class)->findBy(['evenement'=> $c->getEvenement()->getId()]);
+            $ranks = [];
+            foreach ($classements as $clas){
+                array_push($ranks, $clas->getRang());
+            }
+            if(in_array($c->getRang(), $ranks)){
+                $js= "Rank already exists";
+                return $this->render('classement/ajouter_classement_admin.html.twig', array(
+                    'classement' => $c, 'js'=>$js,
+                    'form' => $form->createView(),
+                ));
+            } else {
+                $js="";
             $em = $this->getDoctrine()->getManager();
             $em->persist($c);
             $em->flush();
             return $this->redirectToRoute('show_classement_admin');
+            }
         }
 
         return $this->render('classement/ajouter_classement_admin.html.twig', array(

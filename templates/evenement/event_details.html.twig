@@ -1,7 +1,7 @@
 {% extends "base-front.html.twig" %}
  {% block content %}
      <div class="header-space"></div>          <div class="page-top-block type-match big-size" style="background-image: url(../../wp-content/uploads/2019/12/img13.jpg);">
-     <div class="parallax-image" data-position="50% 50%"><img class="jarallax-img" src="{{ asset('front-office/img/VCT.jpg') }}" alt="eSport League &#8211; Dota 2"></div>
+     <div class="parallax-image" data-position="50% 50%"><img class="jarallax-img" src="{{ asset('front-office/images/'~event.image~'') }}"></div>
      <div class="container">
          <div class="game-team"  >
              <div class="item" style="margin-left: auto; margin-right: auto; padding-left: 200px; padding-right: 200px;">
@@ -27,19 +27,19 @@
                          </div>
                          <div class="post-content">
 
-                                 <div class="clearfix"><p>{{ event.description }}</p>
-                                 </div>
+                             <div class="clearfix"><p>{{ event.description }}</p>
+                             </div>
 
                          </div>
-                         {% if 1 == users and participation %}
-                             <button name="submit" type="submit" id="submit" class="button-style1"><span><a href="{{ path('annuler_participants', {'id_part': participation}) }}" style="color: white;"> Annuler </a></span></button>
+                         {% if app.user.id == users and participation %}
+                             <button name="submit" type="submit" id="submit" class="button-style1"><span><a href="{{ path('annuler_participants', {'id_part': participation,'id_user': app.user.id}) }}" style="color: white;"> Annuler </a></span></button>
                              <button name="submit" type="submit" id="submit" class="button-style1"><span><a href="{{ path('get_qr', {'label': event.nom , 'image': event.image}) }}" style="color: white"> Get QR Code </a></span></button>
                          {% else %}
-                            <button name="submit" type="submit" id="submit" class="button-style1"><span><a href="{{ path('add_participants', {'id_user': 1, 'id_event': event.id}) }}" style="color: white;"> Reserver</a></span></button>
+                             <button name="submit" type="submit" id="submit" class="button-style1"><span><a href="{{ path('add_participants', {'id_user': app.user.id, 'id_event': event.id}) }}" style="color: white;"> Reserver</a></span></button>
                          {% endif %}
                      </div>
+                 </div>
              </div>
-         </div>
          </div>
      </main>
  {% endblock %}

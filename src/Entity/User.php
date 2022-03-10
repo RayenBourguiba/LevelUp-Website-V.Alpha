@@ -255,11 +255,11 @@ class User implements \Serializable, UserInterface
 
         return array_unique($roles);
     }
-
+    
     public function setRoles(array $roles)
     {
         $this->roles = $roles;
-
+    
         // allows for chaining
         return $this;
     }
@@ -268,7 +268,7 @@ class User implements \Serializable, UserInterface
 
     public function eraseCredentials(){}
 
-    public function serialize()
+    public function serialize() 
     {
         return serialize([
             $this->id,
@@ -285,7 +285,7 @@ class User implements \Serializable, UserInterface
             $this->username,
             $this->email,
             $this->password
-            ) = unserialize($string, ['allowed_classes' =>false]);
+        ) = unserialize($string, ['allowed_classes' =>false]);
     }
 
     public function getBanned(): ?bool
@@ -330,5 +330,5 @@ class User implements \Serializable, UserInterface
         return $this;
     }
 
-
+    
 }

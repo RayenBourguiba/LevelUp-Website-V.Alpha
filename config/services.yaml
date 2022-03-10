@@ -4,11 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    fungio_google_calendar:
-        google_calendar:
-            application_name: "Google Calendar"
-            credentials_path: "%kernel.root_dir%/.credentials/calendar.json"
-            client_secret_path: "code_secret_client.com.json"
+
 services:
     # default configuration for services in *this* file
     _defaults:

@@ -76,7 +76,7 @@ class Equipe
         return $this->membres;
     }
 
-    public function addMembre(user $membre): self
+    public function addMembre(User $membre): self
     {
         if (!$this->membres->contains($membre)) {
             $this->membres[] = $membre;
@@ -86,7 +86,7 @@ class Equipe
         return $this;
     }
 
-    public function removeMembre(user $membre): self
+    public function removeMembre(User $membre): self
     {
         if ($this->membres->removeElement($membre)) {
             // set the owning side to null (unless already changed)
@@ -99,14 +99,14 @@ class Equipe
     }
 
     /**
-     * @return Collection|jeux[]
+     * @return Collection|Jeux[]
      */
     public function getJeux(): Collection
     {
         return $this->jeux;
     }
 
-    public function addJeux(jeux $jeux): self
+    public function addJeux(Jeux $jeux): self
     {
         if (!$this->jeux->contains($jeux)) {
             $this->jeux[] = $jeux;
@@ -115,7 +115,7 @@ class Equipe
         return $this;
     }
 
-    public function removeJeux(jeux $jeux): self
+    public function removeJeux(Jeux $jeux): self
     {
         $this->jeux->removeElement($jeux);
 
@@ -169,6 +169,11 @@ class Equipe
         $this->classement = $classement;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getNom();
     }
 
 }

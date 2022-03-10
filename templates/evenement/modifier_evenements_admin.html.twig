@@ -1,4 +1,4 @@
-{% extends "base-back-clean.html.twig" %}
+{% extends "base-dashboard.html.twig" %}
 {% block content %}
 
     <div id="formControls" class="mb-5">
@@ -9,7 +9,9 @@
                         <div class="form-group mb-3">
                             <label class="form-label" for="exampleFormControlInput1">Modifier Nom</label>
                             {{ form_start(form) }}
-
+                            {{ form_row(form.Nom, {'attr': {'class': 'form-control','placeholder': 'Nom'}}) }}
+                            {{ form_row(form.Organisateur, {'attr': {'class': 'form-control','placeholder': 'Organisateur'}}) }}
+                            {{ form_row(form.Description, {'attr': {'class': 'form-control','placeholder': 'Description'}}) }}
                             {{ form_end(form) }}
                         </div>
                     </div>

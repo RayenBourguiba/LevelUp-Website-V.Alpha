@@ -8,8 +8,6 @@ use App\Entity\User;
 use App\Repository\EvenementRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use Fungio\GoogleCalendarBundle\FungioGoogleCalendarBundle;
-use Fungio\GoogleCalendarBundle\Service\GoogleCalendar;
 use Psr\Log\LoggerInterface;
 use src\Form\EditEvenementType;
 use src\Form\EvenementType;
@@ -37,16 +35,17 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/eventdetails/{id}", name="event_details")
+     * @Route("/eventdetails/{id}/{id_user}", name="event_details")
      * Method({"GET"})
      */
     public function getEventDetails(Request $request)
     {
         $p = $this->getDoctrine()->getRepository(Evenement::class)->findBy(["id"=> $request->get('id')]);
         $id_event = $request->get('id');
-        $par = $this->getDoctrine()->getRepository(Participants::class)->findObject(1,  $id_event);
+        $par = $this->getDoctrine()->getRepository(Participants::class)->findObject($request->get('id_user'),  $id_event);
+
         if($par) {
-        $idUsers = $par[0]->getIdUser();
+            $idUsers = $par[0]->getIdUser();
 
             $idParticipation = $par[0]->getId();
             return $this->render('/evenement/event_details.html.twig',
@@ -100,9 +99,23 @@ class EvenementController extends AbstractController
         return $this->render('evenement/afficher_evenements_admin.html.twig',
             array('events' => $p));
     }
+
+    /**
+     * @Route("/dashboard/admin_events_ordered", name="show_events_ordered_admin")
+     * Method({"GET"})
+     */
+    public function getEventsAdminOrdered()
+    {
+        $value = 1;
+        $p = $this->getDoctrine()->getRepository(Evenement::class)->findObject($value);
+        return $this->render('evenement/afficher_evenement_tri_admin.html.twig',
+            array('events' => $p));
+    }
+
+
     /**
      * @Route("/addevent", name="add_events")
-     * Method({"GET","POST"})
+     * Method({"POST"})
      */
 
     public function AjouterEvenement(Request $request)
@@ -110,6 +123,7 @@ class EvenementController extends AbstractController
         $event = new Evenement();
         $form = $this->createForm(EvenementType::class, $event);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -133,8 +147,10 @@ class EvenementController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $event = $em->getRepository(Evenement::class)->find($id);
-        //$em->remove($event);
-       // $em->flush();
+        $part = $em->getRepository(Participants::class)->findBy(['id_event'=> $event->getId()]);
+        $em->remove($event);
+        $em->remove($part[0]);
+         $em->flush();
         $participants = $em->getRepository(Participants::class)->findBy(['id_event' => $id]);
         $users = [];
         foreach ($participants as $row) {
@@ -177,7 +193,7 @@ class EvenementController extends AbstractController
                 }
 
 
-            //Attachments
+                //Attachments
                 try {
                     $mail->send();
 
@@ -223,7 +239,7 @@ class EvenementController extends AbstractController
      * @Route("/show_calendar", name="show_calendar")
      * Method({"GET","POST"})
      */
-    public function UsershowReservation( Request $request, EvenementRepository $eventRepo,   LoggerInterface $logger) : Response
+    public function ShowCalendar( Request $request, EvenementRepository $eventRepo,   LoggerInterface $logger) : Response
     {
 
         $res = [];

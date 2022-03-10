@@ -1,6 +1,5 @@
-{% extends "base-back-clean.html.twig" %}
+{% extends "base-dashboard-new.html.twig" %}
 {% block content %}
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
 
     <div id="calendrier">
     </div>
@@ -20,6 +19,9 @@
                 editable: true,
                 eventResizableFromStart: true
             })
+
+            window.calendar = calendar;
+
             calendar.on('eventChange', (e) => {
                 let url = `/edit_calendar/${e.event.id}`
                 let donnees = {
@@ -33,7 +35,8 @@
                 xhr.open("PUT", url)
                 xhr.send(JSON.stringify(donnees))
             })
-            calendar.render()
+            //setTimeout(function(){ console.log("befor render"); calendar.render(); console.log("after render");}, 5000);
+            calendar.render();
         }
     </script>
 {% endblock %}

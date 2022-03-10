@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * Evenement
  *
  * @ORM\Table(name="evenement")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\EvenementRepository")
  */
 class Evenement
 {
@@ -233,7 +233,7 @@ class Evenement
 
     public function getUploadRoot()
     {
-        return __DIR__.'/../../public/front-office/img/'.$this->getUploadDir();
+        return __DIR__.'/../../public/front-office/images/'.$this->getUploadDir();
     }
 
     public function upload()
@@ -252,7 +252,5 @@ class Evenement
         $this->file->move($this->getUploadRoot(),$this->image);
         unset($this->file);
     }
-
-
 
 }

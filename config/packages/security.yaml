@@ -1,23 +1,39 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User:
+            algorithm: auto
     providers:
-        users_in_memory: { memory: null }
+        users:
+            entity:
+                class: App\Entity\User
+                
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            access_denied_url: /home
             anonymous: lazy
-            provider: users_in_memory
-
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#firewalls-authentication
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+            form_login:
+                login_path: login
+                check_path: login
+                default_target_path: home
+            guard:
+                entry_point: form_login
+                authenticators:
+                    - App\Security\GoogleAuthenticator 
+                   
+            logout:
+                path: logout
+                # where to redirect after logout
+                target: login
+            user_checker: App\Security\UserChecker
+            remember_me :
+                secret : '%kernel.secret%'
+                lifetime : 259200
+                path : /
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/dashboard/*, roles: ROLE_ADMIN }

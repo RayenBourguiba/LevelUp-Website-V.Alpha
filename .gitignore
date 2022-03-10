@@ -7,11 +7,7 @@
 /public/bundles/
 /var/
 /vendor/
-.env
-.idea
-assets
 ###< symfony/framework-bundle ###
-code_secret_client.com.json
 
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
@@ -26,9 +22,4 @@ code_secret_client.com.json
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
-.idea/LevelUp.iml
-.idea/php.xml
-.idea/php.xml
-.idea/LevelUp.iml
-.idea/php.xml
-.idea/LevelUp.iml
+node_modules
