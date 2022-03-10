@@ -67,9 +67,9 @@ class Equipe
         return $this->nom;
     }
 
-    // public function __toString() {
-    //     return (String) $this -> getNom();
-    // }
+    public function __toString() {
+        return (String) $this -> getNom();
+    }
 
     public function setNom(string $nom): self
     {

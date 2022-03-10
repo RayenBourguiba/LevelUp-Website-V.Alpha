@@ -14,7 +14,7 @@ class JeuxType extends AbstractType
         $builder
             ->add('nom')
             ->add('description')
-            ->add('equipes')
+            //->add('equipes')
         ;
     }
 

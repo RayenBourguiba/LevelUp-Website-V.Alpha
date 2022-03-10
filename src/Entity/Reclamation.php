@@ -6,6 +6,11 @@ use App\Repository\ReclamationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
+
+
+
 
 /**
  * @ORM\Entity(repositoryClass=ReclamationRepository::class)
@@ -16,36 +21,45 @@ class Reclamation
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("post:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:read")
      */
     private $sujet;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups("post:read")
      */
     private $description;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("post:read")
      */
     private $date;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("post:read")
      */
     private $status;
 
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="reclamation")
+     * @Groups("post:read")
      */
     private $User;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:read")
+     * @Assert\Email(
+     *      message= "This Email is not valid")
      */
     private $email;
 

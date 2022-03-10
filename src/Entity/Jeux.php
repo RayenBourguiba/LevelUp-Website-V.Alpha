@@ -5,10 +5,18 @@ namespace App\Entity;
 use App\Repository\JeuxRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
- * @ORM\Entity(repositoryClass=JeuxRepository::class)
+  * @ORM\Entity(repositoryClass=JeuxRepository::class)
+  * @UniqueEntity(
+  * fields={"nom"},
+  * errorPath="nom",
+  * message="This name already exists try another name."
+  *)
  */
 class Jeux
 {
